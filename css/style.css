@@ -3,10 +3,19 @@ body {
 }
 
 .jumbotron {
-  margin-top: 70px;
+  background-color: white;
 }
 
 .jumbotron img {
+  border: 5px solid #494848;
   border-radius: 50%;
   width: 14%;
+}
+
+#about {
+  background-color: #ff9d0b;
+}
+
+section {
+  padding-top: 5rem;
 }
