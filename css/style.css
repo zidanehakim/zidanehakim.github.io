@@ -1,27 +1,44 @@
-body {
-  height: 2000px;
+@font-face {
+  font-family: "Vintage Handmade";
+  src: url("../font/Vintage Handmade.ttf") format("truetype");
 }
 
-.jumbotron,
+#jumbotron,
 #projects {
-  background-color: white;
+  background-color: #1d1a18;
+}
+
+#projects p {
+  color: #e48d4f;
+}
+
+#projects .card-body {
+  background-color: #110e0e;
 }
 
 .jumbotron img {
-  border: 5px solid #494848;
   border-radius: 50%;
-  width: 200px;
+  width: 190px;
+  box-shadow: 0px 0px 0px 4px #fa7b26, 0px 0px 0px 7px #ffffff, 0px 0px 0px 15px #121111;
 }
 
 #about,
 #contact {
-  background-color: #ff9d0b;
+  background-color: white;
 }
 
 section {
-  padding-top: 5rem;
+  padding-top: 4rem;
 }
 
 #contact {
   padding-bottom: 5rem;
+}
+
+.navbar-brand {
+  margin-left: 150px;
+  font-family: "Vintage Handmade";
+  transform: scaleX(1.5);
+  text-align: center;
+  filter: drop-shadow(0 0 10px yellow);
 }
