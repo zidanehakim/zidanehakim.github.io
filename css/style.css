@@ -10,7 +10,7 @@ body {
 .jumbotron img {
   border: 5px solid #494848;
   border-radius: 50%;
-  width: 14%;
+  width: 200px;
 }
 
 #about,
@@ -20,4 +20,8 @@ body {
 
 section {
   padding-top: 5rem;
+}
+
+#contact {
+  padding-bottom: 5rem;
 }
