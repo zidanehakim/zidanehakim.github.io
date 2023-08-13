@@ -7,7 +7,8 @@ body {
   overflow-x: hidden;
 }
 
-#jumbotron {
+#jumbotron,
+#about {
   height: 90vh;
   display: flex;
   justify-content: center;
@@ -28,13 +29,6 @@ body {
   border-radius: 50%;
   width: 33%;
   box-shadow: 0px 0px 0px 4px #ac571f, 0px 0px 0px 7px #ffffff, 0px 0px 0px 15px #121111;
-}
-
-#about {
-  height: 90vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 #jumbotron,

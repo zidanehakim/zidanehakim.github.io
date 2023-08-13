@@ -62,12 +62,12 @@
         </div>
         <div class="row text-center justify-content-center p-3">
           <div class="col-md-3">
-            <p style="font-size: 1.1em" data-aos="fade-right" data-aos-delay="250">
+            <p style="font-size: 1.1em" data-aos="fade-up" data-aos-delay="250">
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae adipisci nostrum expedita atque labore, asperiores reiciendis laudantium ratione repellat corporis.
             </p>
           </div>
           <div class="col-md-3">
-            <p style="font-size: 1.1em" data-aos="fade-left" data-aos-delay="350">
+            <p style="font-size: 1.1em" data-aos="fade-up" data-aos-delay="350">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis deleniti, nobis dolorum nam at qui incidunt dolorem possimus adipisci provident dolores tempora molestiae culpa ipsum!
             </p>
           </div>
@@ -205,9 +205,8 @@
       const galleryImage = document.querySelectorAll(".gallery-img");
 
       galleryImage.forEach((img, i) => {
-        img.dataset.aos = "flip-left";
-        img.dataset.aosDelay = 100 * i;
-        img.dataset.aosDuration = 500;
+        img.dataset.aos = "zoom-in";
+        img.dataset.aosDelay = 100*i;
       });
 
       AOS.init({
