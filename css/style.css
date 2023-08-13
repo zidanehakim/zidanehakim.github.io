@@ -3,6 +3,40 @@
   src: url("../font/Vintage Handmade.ttf") format("truetype");
 }
 
+body {
+  overflow-x: hidden;
+}
+
+#jumbotron {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#jumbotron .jumbotron {
+  max-width: 100%;
+  margin-bottom: 150px;
+}
+
+#jumbotron svg {
+  position: absolute;
+  bottom: 7%;
+}
+
+#jumbotron img {
+  border-radius: 50%;
+  width: 33%;
+  box-shadow: 0px 0px 0px 4px #ac571f, 0px 0px 0px 7px #ffffff, 0px 0px 0px 15px #121111;
+}
+
+#about {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #jumbotron,
 #projects {
   background-color: #1d1a18;
@@ -14,12 +48,6 @@
 
 #projects .card-body {
   background-color: #110e0e;
-}
-
-.jumbotron img {
-  border-radius: 50%;
-  width: 190px;
-  box-shadow: 0px 0px 0px 4px #ac571f, 0px 0px 0px 7px #ffffff, 0px 0px 0px 15px #121111;
 }
 
 #about,
@@ -35,10 +63,31 @@ section {
   padding-bottom: 4rem;
 }
 
+footer {
+  display: flex;
+}
+
+footer p {
+  margin: auto;
+}
+
 .navbar-brand {
-  margin-left: 150px;
+  margin-left: 10%;
   font-family: "Vintage Handmade";
   transform: scaleX(1.5);
   text-align: center;
   filter: drop-shadow(0 0 10px yellow);
+}
+
+.navbar .container-fluid {
+  animation: navbar 1s ease forwards;
+}
+
+@keyframes navbar {
+  0% {
+    transform: translateY(-50px);
+  }
+  80% {
+    transform: translateY(3px);
+  }
 }
