@@ -1,7 +1,7 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Logo } from "../components/Logo";
 import { useEffect, useState } from "react";
-import business from "../images/business.png";
+import business from "./../images/business.png";
 
 import { ChevronBack, ChevronForward, Rocket } from "react-ionicons";
 

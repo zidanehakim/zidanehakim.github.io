@@ -1,9 +1,9 @@
-import call from "../images/call.png";
+import call from "./../images/call.png";
 
-import whatsapp from "../images/whatsapp.png";
-import line from "../images/line.png";
-import linkedin from "../images/linkedin.png";
-import email from "../images/email.png";
+import whatsapp from "./../images/whatsapp.png";
+import line from "./../images/line.png";
+import linkedin from "./../images/linkedin.png";
+import email from "./../images/email.png";
 import { Logo } from "../components/Logo";
 
 export const Contact = () => {

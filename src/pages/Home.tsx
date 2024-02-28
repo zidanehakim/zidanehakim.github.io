@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import hero from "../images/hero.png";
+import hero from "./../images/hero.png";
 import {
   CloudDownloadSharp,
   LogoFacebook,
