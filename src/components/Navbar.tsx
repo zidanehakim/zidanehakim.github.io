@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { BookSharp, CallSharp, HomeSharp, PersonCircle } from "react-ionicons";
 import { useState } from "react";
 
 export const Navbar = () => {
+  const location = useLocation();
+
   const [click, setClick] = useState(false);
 
   const invokeClick = () => {
@@ -19,7 +21,9 @@ export const Navbar = () => {
         <Link
           to="/"
           onClick={invokeClick}
-          className={click ? "pointer-events-none" : ""}
+          className={
+            click || location.pathname === "/" ? "pointer-events-none" : ""
+          }
         >
           <div className="bg-gray-950 rounded-full w-fit h-fit px-2 py-2 hover:scale-110 transition-all shadow-lg">
             <HomeSharp color="white" width="1.3em" height="1.3em" />
@@ -28,7 +32,9 @@ export const Navbar = () => {
         <Link
           to="/about"
           onClick={invokeClick}
-          className={click ? "pointer-events-none" : ""}
+          className={
+            click || location.pathname === "/about" ? "pointer-events-none" : ""
+          }
         >
           <div className="bg-gray-950 rounded-full w-fit h-fit px-2 py-2 hover:scale-110 transition-all shadow-lg">
             <PersonCircle color="white" width="1.3em" height="1.3em" />
@@ -37,7 +43,11 @@ export const Navbar = () => {
         <Link
           to="/portfolio"
           onClick={invokeClick}
-          className={click ? "pointer-events-none" : ""}
+          className={
+            click || location.pathname === "/portfolio"
+              ? "pointer-events-none"
+              : ""
+          }
         >
           <div className="bg-gray-950 rounded-full w-fit h-fit px-2 py-2 hover:scale-110 transition-all shadow-lg">
             <BookSharp color="white" width="1.3em" height="1.3em" />
@@ -46,7 +56,11 @@ export const Navbar = () => {
         <Link
           to="/contact"
           onClick={invokeClick}
-          className={click ? "pointer-events-none" : ""}
+          className={
+            click || location.pathname === "/contact"
+              ? "pointer-events-none"
+              : ""
+          }
         >
           <div className="bg-gray-950 rounded-full w-fit h-fit px-2 py-2 hover:scale-110 transition-all shadow-lg">
             <CallSharp color="white" width="1.3em" height="1.3em" />

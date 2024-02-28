@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 type WithTransitionProps = {
   Component: React.ComponentType;
@@ -49,6 +50,8 @@ const transitionTextVariant = {
 };
 
 export const WithTransition = ({ Component }: WithTransitionProps) => {
+  const location = useLocation();
+
   const [delay, setDelay] = useState(true);
   const [delayTransition, setDelayTransition] = useState(true);
 
@@ -79,7 +82,9 @@ export const WithTransition = ({ Component }: WithTransitionProps) => {
             className="text-white text-7xl font-semibold m-auto"
             style={{ fontVariant: "small-caps" }}
           >
-            {Component.name}
+            {location.pathname === "/"
+              ? "Home"
+              : location.pathname.substring(1, location.pathname.length)}
           </motion.h1>
         )}
       </motion.div>
