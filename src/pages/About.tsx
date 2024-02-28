@@ -22,7 +22,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Logo } from "../components/Logo";
 import { Timeline } from "../components/Timeline";
 
@@ -118,10 +118,6 @@ export const About = () => {
 
   const refSkills = useRef(null);
   const refTrack = useRef(null);
-
-  useEffect(() => {
-    document.documentElement.style.scrollBehavior = "smooth";
-  }, []);
 
   const { scrollYProgress: scrollYProgressSkills } = useScroll({
     target: refSkills,
@@ -237,14 +233,14 @@ export const About = () => {
           </div>
         </div>
 
-        <a href="#timeline" className="absolute bottom-[8em] right-[15%]">
+        <div className="absolute bottom-[8em] right-[15%]">
           <img
             src={forward}
             alt="forward"
             className="rotate-90 hover:scale-105 transition-all opacity-90"
             width="28px"
           />
-        </a>
+        </div>
       </div>
       <div
         className="w-[100%] h-fit text-black relative bg-gray-900 py-[10em]"
@@ -286,17 +282,17 @@ export const About = () => {
           ></motion.div>
         </div>
 
-        <a href="#skills" className="absolute bottom-[8em] right-[15%]">
+        <div className="absolute bottom-[8em] right-[15%]">
           <img
             src={forward}
             alt="forward"
             className="rotate-90 hover:scale-15 transition-all invert opacity-90"
             width="28px"
           />
-        </a>
+        </div>
       </div>
 
-      <div className="w-[100%] h-[100vh] py-[16vh] m-auto" id="skills">
+      <div className="w-[100%] h-[100vh] py-[16vh] m-auto">
         <div>
           <h1
             ref={refSkills}

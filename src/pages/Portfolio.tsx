@@ -19,7 +19,7 @@ const portfolio = [
   {
     name: "animalist",
     desc: "Anime related stuffs search engine (characters, animes, movies) with cool parallax landing page, fetch data from Jikan API",
-    url: "https://zidanehakim.github.io/react-instrument-store",
+    url: "https://zidanehakim.github.io/animalist",
   },
 ];
 

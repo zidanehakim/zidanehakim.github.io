@@ -79,7 +79,7 @@ export const WithTransition = ({ Component }: WithTransitionProps) => {
             variants={transitionTextVariant}
             initial="hidden"
             animate="visible"
-            className="text-white text-7xl font-semibold m-auto"
+            className="text-white md:text-7xl text-5xl font-semibold m-auto"
             style={{ fontVariant: "small-caps" }}
           >
             {location.pathname === "/"
