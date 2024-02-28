@@ -55,7 +55,7 @@ export const Portfolio = () => {
 
   return (
     <>
-      <div className="w-[100vw] h-[100vh] text-center flex flex-row justify-center items-center bg-white pb-[4em]">
+      <div className="w-[100vw] h-[100vh] text-center flex flex-row justify-center items-center bg-white pb-[10vh]">
         <Logo />
         <div>
           <div className="w-[90vw] max-w-[50em] h-fit m-auto row-span-1 col-span-2 z-10 mb-4">
@@ -139,7 +139,7 @@ export const Portfolio = () => {
 
                     <div className="w-fit m-auto">
                       <img
-                        src={`../src/images/web_${obj.name}.png`}
+                        src={`./../src/images/web_${obj.name}.png`}
                         alt={obj.name}
                         width={
                           windowSize[0] < 450 ? `${windowSize[0]}px` : "450px"
