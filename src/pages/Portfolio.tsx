@@ -139,7 +139,7 @@ export const Portfolio = () => {
 
                     <div className="w-fit m-auto">
                       <img
-                        src={`./../src/images/web_${obj.name}.png`}
+                        src={`../src/images/web_${obj.name}.png`}
                         alt={obj.name}
                         width={
                           windowSize[0] < 450 ? `${windowSize[0]}px` : "450px"

@@ -347,7 +347,7 @@ export const About = () => {
                         </h1>
                         <img
                           className="logoIcon transition-all shadow-md p-2 m-auto"
-                          src={`/../src/images/${obj}.svg`}
+                          src={`../src/images/${obj}.svg`}
                           alt={obj}
                           width="60px"
                         />
@@ -386,7 +386,7 @@ export const About = () => {
                         </h1>
                         <img
                           className="logoIcon transition-all shadow-md p-2 m-auto"
-                          src={`/../src/images/${obj}.svg`}
+                          src={`../src/images/${obj}.svg`}
                           alt={obj}
                           width="65px"
                         />
