@@ -83,7 +83,7 @@ export const WithTransition = ({ Component }: WithTransitionProps) => {
             style={{ fontVariant: "small-caps" }}
           >
             {location.pathname === "/"
-              ? "Home"
+              ? "home"
               : location.pathname.substring(1, location.pathname.length)}
           </motion.h1>
         )}

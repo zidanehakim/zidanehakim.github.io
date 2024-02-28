@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { School } from "react-ionicons";
+import { School, Trophy } from "react-ionicons";
 
 type TimelineProps = {
   index: number;
@@ -83,13 +83,23 @@ export const Timeline = ({ index, obj }: TimelineProps) => {
           <div className={`flex ${isOdd ? "justify-end" : "justify-start"}`}>
             <h1 className="font-bold rounded-xl bg-pink-800 text-white flex items-center py-[.2em] px-4 w-fit mx-2 text-sm">
               {obj.type}
-              <School
-                color="white"
-                style={{
-                  display: "inline-block",
-                  marginLeft: ".3em",
-                }}
-              />
+              {obj.type === "Education" ? (
+                <School
+                  color="white"
+                  style={{
+                    display: "inline-block",
+                    marginLeft: ".3em",
+                  }}
+                />
+              ) : (
+                <Trophy
+                  color="white"
+                  style={{
+                    display: "inline-block",
+                    marginLeft: ".3em",
+                  }}
+                />
+              )}
             </h1>
           </div>
 

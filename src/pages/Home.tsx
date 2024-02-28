@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Logo } from "../components/Logo";
 
-const displayTexts = ["Fullstack Dev", "Engineer", "College Student"];
+const displayTexts = ["Full-stack Dev", "Engineer", "College Student"];
 
 export const Home = () => {
   const [visible, setVisible] = useState(false);

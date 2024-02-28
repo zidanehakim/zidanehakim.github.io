@@ -8,18 +8,18 @@ import { ChevronBack, ChevronForward, Rocket } from "react-ionicons";
 const portfolio = [
   {
     name: "noteify",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.Soluta asperiores provident molestiae quibusdam sapientevero quam corporis repellat exercitationem dolore.",
+    desc: "Design your planner with drag-and-drop sticky notes, featuring weather forecasts, real-time clocks, and location tracking. Easily create, stick, and track tasks.",
     url: "https://noteify-io.netlify.app/",
   },
   {
-    name: "noteify",
-    desc: "Lorem2 ipsum dolor sit amet consectetur adipisicing elit.Soluta asperiores provident molestiae quibusdam sapientevero quam corporis repellat exercitationem dolore.",
-    url: "https://noteify-io.netlify.app/",
+    name: "instrument store",
+    desc: "Welcome to our online instrument store, where cozy ambiance meets jazzy design. Search for your desired instruments now and begin your musical journey!",
+    url: "https://zidanehakim.github.io/react-instrument-store",
   },
   {
-    name: "noteify3",
-    desc: "Lorem3 ipsum dolor sit amet consectetur adipisicing elit.Soluta asperiores provident molestiae quibusdam sapientevero quam corporis repellat exercitationem dolore.",
-    url: "https://noteify-io.netlify.app/",
+    name: "animalist",
+    desc: "Anime related stuffs search engine (characters, animes, movies) with cool parallax landing page, fetch data from Jikan API",
+    url: "https://zidanehakim.github.io/react-instrument-store",
   },
 ];
 
@@ -139,7 +139,7 @@ export const Portfolio = () => {
 
                     <div className="w-fit m-auto">
                       <img
-                        src={`../src/images/web_${obj.name}.png`}
+                        src={`/web_${obj.name}.png`}
                         alt={obj.name}
                         width={
                           windowSize[0] < 450 ? `${windowSize[0]}px` : "450px"
@@ -155,7 +155,7 @@ export const Portfolio = () => {
                     </div>
 
                     <p
-                      className="font-semibold text-sm text-gray-500 mt-4 text-start px-4"
+                      className="font-semibold text-sm text-gray-500 mt-2 text-start px-4"
                       style={{
                         width:
                           windowSize[0] < 450 ? `${windowSize[0]}px` : "450px",

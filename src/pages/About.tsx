@@ -43,52 +43,52 @@ const containerVariants = {
 
 const timeline = [
   {
-    type: "Education1",
+    type: "Education",
     time: "2022-Present",
     title: "National Taiwan University, Civil Engineering Department",
     sub: "2nd year",
     description:
-      "Since 2022, I've been immersed in civil engineering studies as a sophomore, delving into structural analysis, transportation engineering, and sustainability. From lab work to internships, each experience fuels my passion for solving real-world engineering challenges, and I look forward to exploring new specializations ahead.",
+      "As I'm into engineering and would like to try something new, Civil Engineering does attract my interest a lot. Being able to analyze structures and make durable buildings, combined with mechanical theory and all of its complexity, makes the learning process more fun.",
   },
   {
-    type: "Education2",
+    type: "Award",
     time: "2022-Present",
-    title: "National Taiwan University, Civil Engineering Department",
-    sub: "2nd year",
+    title: "Beasiswa Indonesia Maju (BIM) Awardee",
+    sub: "Ministry of Education, Culture, Research, and Technology",
     description:
-      "Since 2022, I've been immersed in civil engineering studies as a sophomore, delving into structural analysis, transportation engineering, and sustainability. From lab work to internships, each experience fuels my passion for solving real-world engineering challenges, and I look forward to exploring new specializations ahead.",
+      "Participating in the National Indonesian Informatics Olympiad 2021 brought me the opportunity to become an awardee of the Maju Scholarship and to choose National Taiwan University for my further studies.",
   },
   {
-    type: "Education3",
-    time: "2022-Present",
-    title: "National Taiwan University, Civil Engineering Department",
-    sub: "2nd year",
+    type: "Award",
+    time: "2033",
+    title: "Best Automation Award, Best Automation Group",
+    sub: "Physical Model Design Laboratory, NTU Civil Engineering Course",
     description:
-      "Since 2022, I've been immersed in civil engineering studies as a sophomore, delving into structural analysis, transportation engineering, and sustainability. From lab work to internships, each experience fuels my passion for solving real-world engineering challenges, and I look forward to exploring new specializations ahead.",
+      "Rail track projects, I've always strived to create the best and most creative projects combines with programming. In this case, the Raspberry Pi sends an HTML file to localhost:5000 when certain conditions of the rail are met.",
   },
   {
-    type: "Education4",
-    time: "2022-Present",
-    title: "National Taiwan University, Civil Engineering Department",
-    sub: "2nd year",
+    type: "Award",
+    time: "2021",
+    title: "National Informatics Olympiad",
+    sub: "Finalist",
     description:
-      "Since 2022, I've been immersed in civil engineering studies as a sophomore, delving into structural analysis, transportation engineering, and sustainability. From lab work to internships, each experience fuels my passion for solving real-world engineering challenges, and I look forward to exploring new specializations ahead.",
+      "Having obtained a gold medal in the Bengkulu Informatics Olympiad 2021, I was chosen to represent the Bengkulu province in the National Informatics field. Consequently, I had the opportunity to participate as a finalist in the competition",
   },
   {
-    type: "Education5",
-    time: "2022-Present",
-    title: "National Taiwan University, Civil Engineering Department",
-    sub: "2nd year",
+    type: "Award",
+    time: "2021",
+    title: "Bengkulu Informatics Olympiad",
+    sub: "Gold Medal",
     description:
-      "Since 2022, I've been immersed in civil engineering studies as a sophomore, delving into structural analysis, transportation engineering, and sustainability. From lab work to internships, each experience fuels my passion for solving real-world engineering challenges, and I look forward to exploring new specializations ahead.",
+      "I've always been passionate about programming, starting from school-level qualifications, advancing to district competitions, and eventually participating at the provincial level. Hard work paid off when I was awarded a Gold Medal in the competition.",
   },
   {
-    type: "Education6",
-    time: "2022-Present",
-    title: "National Taiwan University, Civil Engineering Department",
-    sub: "2nd year",
+    type: "Education",
+    time: "2019-2022",
+    title: "SMA Negeri 4 Rejang Lebong",
+    sub: "Senior High School",
     description:
-      "Since 2022, I've been immersed in civil engineering studies as a sophomore, delving into structural analysis, transportation engineering, and sustainability. From lab work to internships, each experience fuels my passion for solving real-world engineering challenges, and I look forward to exploring new specializations ahead.",
+      "Three years of senior high school, I was just a normal student, self-studying programming on my own.",
   },
 ];
 
@@ -347,7 +347,7 @@ export const About = () => {
                         </h1>
                         <img
                           className="logoIcon transition-all shadow-md p-2 m-auto"
-                          src={`../src/images/${obj}.svg`}
+                          src={`/${obj}.svg`}
                           alt={obj}
                           width="60px"
                         />
@@ -386,7 +386,7 @@ export const About = () => {
                         </h1>
                         <img
                           className="logoIcon transition-all shadow-md p-2 m-auto"
-                          src={`../src/images/${obj}.svg`}
+                          src={`/${obj}.svg`}
                           alt={obj}
                           width="65px"
                         />
