@@ -60,7 +60,7 @@ const timeline = [
   },
   {
     type: "Award",
-    time: "2033",
+    time: "2023",
     title: "Best Automation Award, Best Automation Group",
     sub: "Physical Model Design Laboratory, NTU Civil Engineering Course",
     description:
