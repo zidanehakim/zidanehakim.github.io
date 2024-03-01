@@ -55,7 +55,7 @@ export const Portfolio = () => {
 
   return (
     <>
-      <div className="w-[100vw] h-[100vh] text-center flex flex-row justify-center items-center bg-white pb-[10vh]">
+      <div className="w-[100vw] h-[100vh] text-center flex flex-row justify-center items-center bg-white pb-[10vh] relative">
         <Logo />
         <div>
           <div className="w-[90vw] max-w-[50em] h-fit m-auto row-span-1 col-span-2 z-10 mb-4">
