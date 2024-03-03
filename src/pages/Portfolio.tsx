@@ -155,7 +155,7 @@ export const Portfolio = () => {
                     </div>
 
                     <p
-                      className="font-semibold text-sm text-gray-500 mt-2 text-start px-4"
+                      className="font-semibold text-sm text-gray-500 mt-2 text pe-4 px-2 text-justify"
                       style={{
                         width:
                           windowSize[0] < 450 ? `${windowSize[0]}px` : "450px",
