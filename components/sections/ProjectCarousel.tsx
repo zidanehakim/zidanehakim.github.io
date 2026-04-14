@@ -78,7 +78,7 @@ export function ProjectCarousel() {
               {projects.map((project, i) => (
                 <div
                   key={i}
-                  className="flex-shrink-0 flex flex-col px-4"
+                  className="group flex-shrink-0 flex flex-col px-4"
                   style={{ width: `${100 / projects.length}%` }}
                 >
                   <div className="flex items-center justify-between mb-3">
@@ -92,7 +92,7 @@ export function ProjectCarousel() {
                       Demo <ExternalLink size={14} />
                     </a>
                   </div>
-                  <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-gray-100 shadow-sm">
+                  <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-gray-100 shadow-sm group-hover:ring-2 group-hover:ring-violet-500 group-hover:ring-offset-2 transition-all">
                     <Image
                       src={project.image}
                       alt={project.name}

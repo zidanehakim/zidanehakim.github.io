@@ -173,13 +173,13 @@ export function Hero() {
             <a
               href="/YAZIDANE_HAKIM_RESUME.pdf"
               download
-              className="px-6 py-2.5 rounded-full border-2 border-gray-900 text-gray-900 font-semibold text-sm hover:shadow-[0_0_12px_rgba(0,0,0,0.25)] transition-shadow"
+              className="px-6 py-2.5 rounded-full border-2 border-gray-900 text-gray-900 font-semibold text-sm hover:shadow-[0_0_20px_#7c3aed66] hover:border-violet-600 hover:text-violet-600 transition-all"
             >
               Resume
             </a>
             <Link
               href="/about"
-              className="px-6 py-2.5 rounded-full bg-gray-900 text-white font-semibold text-sm hover:shadow-[0_0_12px_rgba(0,0,0,0.4)] transition-shadow"
+              className="px-6 py-2.5 rounded-full bg-gray-900 text-white font-semibold text-sm hover:shadow-[0_0_20px_#7c3aed66] hover:bg-violet-700 transition-all"
             >
               About
             </Link>

@@ -55,7 +55,7 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
       </AnimatePresence>
 
       {/* Page content */}
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="sync">
         <motion.div key={pathname}>
           {children}
         </motion.div>
