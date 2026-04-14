@@ -1,0 +1,35 @@
+[
+  {
+    "slug": "noteify",
+    "name": "Noteify",
+    "tagline": "Your intelligent sticky-notes workspace",
+    "description": "A feature-rich planner app with drag-and-drop sticky notes, real-time weather, live clock, and location awareness. Built for productivity with a playful, tactile interface.",
+    "demo": "https://noteify-io.netlify.app/",
+    "repo": null,
+    "screenshot": "/web_noteify.png",
+    "tags": ["React", "Drag & Drop", "Weather API", "Netlify"],
+    "color": "#f59e0b"
+  },
+  {
+    "slug": "instrument-store",
+    "name": "Instrument Store",
+    "tagline": "Where music meets the modern web",
+    "description": "An online instrument shop with a jazzy, editorial design. Showcases product listings, smooth carousels, and a carefully crafted checkout experience.",
+    "demo": "https://zidanehakim.github.io/react-instrument-store",
+    "repo": null,
+    "screenshot": "/web_instrument store.png",
+    "tags": ["React", "E-commerce", "Tailwind", "GitHub Pages"],
+    "color": "#d97706"
+  },
+  {
+    "slug": "animalist",
+    "name": "Animalist",
+    "tagline": "Discover anime, beautifully",
+    "description": "An anime search engine powered by the Jikan API with a stunning parallax landing page, smooth scroll transitions, and rich media cards.",
+    "demo": "https://zidanehakim.github.io/animalist",
+    "repo": null,
+    "screenshot": "/web_animalist.png",
+    "tags": ["React", "Jikan API", "Parallax", "Framer Motion"],
+    "color": "#b45309"
+  }
+]

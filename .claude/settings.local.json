@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__plugin_claude-mem_mcp-search__get_observations",
+      "Bash(npx skills:*)",
+      "Bash(git config:*)",
+      "Bash(git checkout:*)",
+      "Bash(mkdir -p C:/zidanehakim.github.io/public/images)",
+      "Bash(cp C:/zidanehakim.github.io/src/images/* C:/zidanehakim.github.io/public/images/)",
+      "Bash(rm -rf C:/zidanehakim.github.io/src)",
+      "Bash(rm -f C:/zidanehakim.github.io/vite.config.ts C:/zidanehakim.github.io/index.html C:/zidanehakim.github.io/tsconfig.node.json)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)"
+    ]
+  }
+}

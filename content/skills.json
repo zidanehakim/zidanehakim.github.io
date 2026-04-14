@@ -1,0 +1,22 @@
+{
+  "frontend": [
+    { "name": "HTML5", "icon": "/html5.svg" },
+    { "name": "CSS", "icon": "/css.svg" },
+    { "name": "JavaScript", "icon": "/javascript.svg" },
+    { "name": "TypeScript", "icon": "/typescript.svg" },
+    { "name": "React", "icon": "/react.svg" },
+    { "name": "Tailwind", "icon": "/tailwind.svg" },
+    { "name": "Bootstrap", "icon": "/bootstrap.svg" },
+    { "name": "Framer", "icon": "/framer.svg" },
+    { "name": "Unity", "icon": "/unity.svg" }
+  ],
+  "backend": [
+    { "name": "Node.js", "icon": "/nodejs.svg" },
+    { "name": "Express.js", "icon": "/expressjs.svg" },
+    { "name": "MongoDB", "icon": "/mongodb.svg" },
+    { "name": "Supabase", "icon": "/supabase.svg" },
+    { "name": "Git", "icon": "/git.svg" },
+    { "name": "GitHub", "icon": "/github.svg" },
+    { "name": "JSON", "icon": "/json.svg" }
+  ]
+}

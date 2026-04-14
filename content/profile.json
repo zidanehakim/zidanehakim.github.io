@@ -1,0 +1,18 @@
+{
+  "name": "Yazidane Hakim",
+  "shortName": "Zidane",
+  "title": "Full-stack Dev",
+  "titles": ["Full-stack Dev", "Engineer", "College Student"],
+  "bio": "Sophomore at National Taiwan University studying Civil Engineering. I build things for the web — from interactive UIs to scalable backends. Passionate about clean code, great design, and technology that solves real problems.",
+  "location": "50 Changxing St, Daan Dist, Taipei City, Taiwan",
+  "phone": "+886 908735498",
+  "email": "zidanehakimgt@gmail.com",
+  "socials": {
+    "linkedin": "https://www.linkedin.com/in/yazidane-hakim",
+    "github": "https://github.com/zidanehakim",
+    "instagram": "https://instagram.com/yazidanehakim",
+    "whatsapp": "https://wa.me/0908735498",
+    "line": "yazidanehakim"
+  },
+  "resume": "/YAZIDANE_HAKIM_RESUME.pdf"
+}

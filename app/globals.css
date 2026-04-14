@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Charcoal + Amber Design System */
+    --background: 15 15 15;
+    --foreground: 229 229 229;
+    --card: 22 22 22;
+    --card-foreground: 229 229 229;
+    --popover: 22 22 22;
+    --popover-foreground: 229 229 229;
+    --primary: 38 157 11;
+    --primary-foreground: 15 15 15;
+    --secondary: 38 38 38;
+    --secondary-foreground: 163 163 163;
+    --muted: 30 30 30;
+    --muted-foreground: 115 115 115;
+    --accent: 245 158 11;
+    --accent-foreground: 15 15 15;
+    --border: 38 38 38;
+    --input: 38 38 38;
+    --ring: 245 158 11;
+    --radius: 0.625rem;
+
+    /* Amber palette */
+    --amber-50: 255 251 235;
+    --amber-100: 254 243 199;
+    --amber-200: 253 230 138;
+    --amber-300: 252 211 77;
+    --amber-400: 251 191 36;
+    --amber-500: 245 158 11;
+    --amber-600: 217 119 6;
+    --amber-700: 180 83 9;
+    --amber-800: 146 64 14;
+    --amber-900: 120 53 15;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  /* Hide scrollbar */
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: rgba(245, 158, 11, 0.25);
+    color: #fbbf24;
+  }
+}
+
+@layer components {
+  /* Dot grid background */
+  .dot-grid {
+    background-image: radial-gradient(circle, rgba(245, 158, 11, 0.18) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Gradient text — amber */
+  .text-gradient {
+    background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 40%, #fde68a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Amber glow effect */
+  .amber-glow {
+    box-shadow:
+      0 0 20px rgba(245, 158, 11, 0.15),
+      0 0 60px rgba(245, 158, 11, 0.05);
+  }
+
+  .amber-glow-strong {
+    box-shadow:
+      0 0 30px rgba(245, 158, 11, 0.25),
+      0 0 80px rgba(245, 158, 11, 0.1),
+      inset 0 0 30px rgba(245, 158, 11, 0.03);
+  }
+
+  /* Glass morphism — dark */
+  .glass {
+    background: rgba(22, 22, 22, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(245, 158, 11, 0.1);
+  }
+
+  .glass-navbar {
+    background: rgba(15, 15, 15, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(245, 158, 11, 0.08);
+  }
+
+  /* Noise texture overlay */
+  .noise::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* Section heading */
+  .section-heading {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  /* Terminal font */
+  .font-terminal {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Hover card lift */
+  .card-lift {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .card-lift:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.4),
+      0 0 20px rgba(245, 158, 11, 0.08);
+  }
+
+  /* Tag / badge */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 10px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: rgba(245, 158, 11, 0.1);
+    color: #fbbf24;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    letter-spacing: 0.02em;
+  }
+
+  /* Page overlay transition */
+  .page-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #0a0a0a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+}
+
+@layer utilities {
+  .amber-border {
+    border-color: rgba(245, 158, 11, 0.3);
+  }
+
+  .amber-border-subtle {
+    border-color: rgba(245, 158, 11, 0.1);
+  }
+
+  .text-amber-glow {
+    color: #f59e0b;
+    text-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+  }
+
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}

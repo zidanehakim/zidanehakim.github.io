@@ -1,0 +1,50 @@
+[
+  {
+    "id": "ntu",
+    "type": "education",
+    "period": "2023 – Present",
+    "title": "National Taiwan University",
+    "subtitle": "B.Sc. Civil Engineering",
+    "description": "Second-year undergraduate at one of Asia's top-ranked universities. Simultaneously pursuing web development and software engineering alongside civil engineering coursework."
+  },
+  {
+    "id": "sma4",
+    "type": "education",
+    "period": "2020 – 2023",
+    "title": "SMA Negeri 4 Bengkulu",
+    "subtitle": "Senior High School",
+    "description": "Graduated with honours. Represented school in regional and national informatics competitions while leading the school's programming club."
+  },
+  {
+    "id": "bim",
+    "type": "award",
+    "period": "2022",
+    "title": "BIM Scholarship",
+    "subtitle": "Full Academic Scholarship",
+    "description": "Recipient of the prestigious BIM (Beasiswa Indonesia Maju) scholarship from the Indonesian Ministry of Education, awarded for exceptional academic performance and leadership potential."
+  },
+  {
+    "id": "automation",
+    "type": "award",
+    "period": "2022",
+    "title": "Best Automation Project",
+    "subtitle": "Raspberry Pi Competition",
+    "description": "Won first place in a regional automation competition with a Raspberry Pi-powered smart home system featuring sensor integration and a custom web dashboard."
+  },
+  {
+    "id": "national-olympiad",
+    "type": "award",
+    "period": "2022",
+    "title": "National Informatics Olympiad",
+    "subtitle": "National Finalist",
+    "description": "Advanced to the national finals of Indonesia's most prestigious informatics competition, competing against the top students from across the country."
+  },
+  {
+    "id": "bengkulu-olympiad",
+    "type": "award",
+    "period": "2021",
+    "title": "Bengkulu Informatics Olympiad",
+    "subtitle": "Gold Medal",
+    "description": "Achieved gold medal in the provincial informatics olympiad, demonstrating excellence in algorithms, data structures, and computational problem-solving."
+  }
+]
