@@ -21,7 +21,7 @@ function getLabel(pathname: string) {
 }
 
 export function LayoutWrapper({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname()
+  const pathname = usePathname() ?? "/"
   const setTransitioning = useNavStore((s) => s.setTransitioning)
 
   useEffect(() => {
