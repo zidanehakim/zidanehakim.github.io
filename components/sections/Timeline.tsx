@@ -60,7 +60,7 @@ function TimelineEntry({ obj, index }: { obj: typeof timeline[0]; index: number 
 }
 
 export function Timeline() {
-  const sectionRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start center", "end center"],
@@ -70,6 +70,7 @@ export function Timeline() {
 
   return (
     <section
+      ref={sectionRef}
       className="bg-gray-900 w-full relative overflow-hidden"
       style={{ paddingTop: "10em", paddingBottom: "10em" }}
     >
@@ -90,7 +91,6 @@ export function Timeline() {
 
       {/* Animated scroll-progress line */}
       <div
-        ref={sectionRef}
         className="absolute left-1/2 -translate-x-1/2 w-2 top-[6em] overflow-hidden"
         style={{ height: `${totalHeight}em` }}
       >

@@ -10,7 +10,7 @@ export function ProjectCarousel() {
 
   const percent = useMotionValue(0)
   const loadingSpring = useSpring(percent, { stiffness: 80, damping: 20 })
-  const loading = useTransform(loadingSpring, [0, 1], ["100%", "0%"])
+  const loading = useTransform(loadingSpring, [0, 1], ["0%", "100%"])
 
   const goTo = useCallback((idx: number) => {
     if (idx < 0 || idx >= projects.length) return

@@ -64,6 +64,7 @@ export function Hero() {
           charIdx++
           setText(word.slice(0, charIdx))
         } else {
+          if (pauseTimeout) clearTimeout(pauseTimeout)
           pauseTimeout = setTimeout(() => {
             removing = true
           }, 2000)

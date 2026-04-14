@@ -1,17 +1,10 @@
 import type { Variants } from "framer-motion"
 
-// Page transition overlay variants (used in PageTransition component)
+// Page transition overlay — slides down on enter, up on exit
 export const overlayVariants: Variants = {
-  initial: { y: "-100%" },
-  enter: { y: "0%", transition: { duration: 0.3, ease: "easeIn" } },
-  exit: { y: "-100%", transition: { duration: 0.3, ease: "easeOut" } },
-}
-
-// Page content fade-in after overlay exits
-export const pageVariants: Variants = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1, transition: { duration: 0.2, delay: 0.1 } },
-  exit: { opacity: 0, transition: { duration: 0.15 } },
+  hidden:  { y: "-100%" },
+  visible: { y: "0%",    transition: { duration: 0.3, ease: "easeIn"  } },
+  exit:    { y: "-100%", transition: { duration: 0.3, ease: "easeOut" } },
 }
 
 // Stagger container for skill icons / timeline cards

@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image"
 import { Logo } from "@/components/layout/Logo"
 import { contactInfo } from "@/lib/data"

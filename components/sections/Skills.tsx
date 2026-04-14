@@ -28,6 +28,7 @@ function SkillGrid({ skills, title }: { skills: string[]; title: string }) {
             key={slug}
             variants={itemVariants}
             className="logo relative text-center w-[4.5em] cursor-pointer"
+            title={slug.toUpperCase()}
           >
             <p className="logoText font-bold text-gray-900 opacity-0 transition-all select-none text-xs">
               {slug.toUpperCase()}
