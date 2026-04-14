@@ -1,3 +1,11 @@
+import { Logo } from "@/components/layout/Logo"
+import { ProjectCarousel } from "@/components/sections/ProjectCarousel"
+
 export default function Portfolio() {
-  return <main className="w-screen h-screen bg-white" />
+  return (
+    <>
+      <Logo />
+      <ProjectCarousel />
+    </>
+  )
 }

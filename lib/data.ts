@@ -63,7 +63,7 @@ export const projects = [
     name: "instrument store",
     desc: "Welcome to our online instrument store, where cozy ambiance meets jazzy design. Search for your desired instruments now and begin your musical journey!",
     url: "https://zidanehakim.github.io/react-instrument-store",
-    image: "/web_instrument store.png",
+    image: "/web_instrument-store.png",
   },
   {
     name: "animalist",
