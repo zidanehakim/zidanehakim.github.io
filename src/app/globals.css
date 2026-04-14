@@ -17,6 +17,36 @@ body {
 .images::-webkit-scrollbar { display: none; }
 .images { -ms-overflow-style: none; scrollbar-width: none; }
 
+/* IdentityShowcase scanner animations */
+.scan-reveal {
+  animation: scan-reveal 3s ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes scan-reveal {
+  0%   { clip-path: inset(0 100% 0 0); opacity: 0; }
+  5%   { opacity: 1; }
+  60%  { clip-path: inset(0 0% 0 0); }
+  100% { clip-path: inset(0 0% 0 0); }
+}
+
+.scan-beam {
+  animation: scan-beam 3s ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes scan-beam {
+  0%   { left: 0%; opacity: 0; }
+  5%   { opacity: 1; }
+  60%  { left: 100%; opacity: 1; }
+  70%  { left: 100%; opacity: 0; }
+  100% { left: 100%; opacity: 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fade-in 0.5s ease-out; }
+
 @layer base {
   :root {
     --background: 0 0% 100%;
