@@ -5,7 +5,6 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 import { displayTexts, socials } from "@/lib/data"
 import { TransitionLink } from "@/components/layout/TransitionLink"
-import { FloatingOrbs } from "@/components/ui/FloatingOrbs"
 
 // Simple SVG brand icons (Lucide doesn't ship brand icons)
 function LinkedInIcon({ size = 22 }: { size?: number }) {
@@ -97,7 +96,6 @@ export function Hero() {
 
   return (
     <section className="dot-grid relative w-screen h-screen bg-white overflow-hidden flex items-center justify-center">
-      <FloatingOrbs />
 
       {/* ── Asymmetric edge decorations ── */}
 
@@ -124,33 +122,25 @@ export function Hero() {
         <span className="text-[9px] font-mono text-gray-400 tracking-widest select-none">TAIPEI · TW</span>
       </div>
 
-      {/* Bottom-center — scroll indicator */}
-      <motion.div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-1.5 z-10"
-        animate={{ y: [0, 5, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-      >
+      {/* Bottom-center — scroll indicator (CSS animation, no JS thread) */}
+      <div className="scroll-bob absolute bottom-6 hidden md:flex flex-col items-center gap-1.5 z-10" style={{ left: "50%" }}>
         <span className="text-[9px] font-mono text-gray-400 tracking-widest select-none">scroll</span>
         <div className="w-px h-5 bg-gradient-to-b from-gray-300 to-transparent" />
-      </motion.div>
+      </div>
 
-      {/* Ghost name — animated background text */}
-      <motion.h1
+      {/* Ghost name — animated background text (CSS animation, no JS thread) */}
+      <span
         aria-hidden
-        className="pointer-events-none absolute select-none text-[10vw] font-black text-gray-900 opacity-[0.04] whitespace-nowrap top-1/4"
-        animate={{ x: [50, -50] }}
-        transition={{ duration: 8, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
+        className="ghost-drift-lr pointer-events-none absolute select-none text-[10vw] font-black text-gray-900 opacity-[0.04] whitespace-nowrap top-1/4"
       >
         Yazidane
-      </motion.h1>
-      <motion.h1
+      </span>
+      <span
         aria-hidden
-        className="pointer-events-none absolute select-none text-[10vw] font-black text-gray-900 opacity-[0.04] whitespace-nowrap bottom-1/4"
-        animate={{ x: [-50, 50] }}
-        transition={{ duration: 8, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
+        className="ghost-drift-rl pointer-events-none absolute select-none text-[10vw] font-black text-gray-900 opacity-[0.04] whitespace-nowrap bottom-1/4"
       >
         Hakim
-      </motion.h1>
+      </span>
 
       {/* Main content */}
       <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-8 px-6 md:px-16 max-w-6xl w-full">
@@ -173,14 +163,14 @@ export function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          {/* Web3 pulse rings behind image */}
-          {[220, 310, 400].map((size, i) => (
+          {/* Web3 pulse rings behind image — scale/opacity are GPU-composited */}
+          {[220, 330].map((size, i) => (
             <motion.div
               key={size}
               className="absolute rounded-full border border-violet-400/[0.12] pointer-events-none"
-              style={{ width: size, height: size }}
-              animate={{ scale: [1, 1.06, 1], opacity: [0.5, 0.1, 0.5] }}
-              transition={{ duration: 4 + i, repeat: Infinity, delay: i * 1.3, ease: "easeInOut" }}
+              style={{ width: size, height: size, willChange: "transform, opacity" }}
+              animate={{ scale: [1, 1.07, 1], opacity: [0.45, 0.08, 0.45] }}
+              transition={{ duration: 5 + i * 2, repeat: Infinity, delay: i * 1.8, ease: "easeInOut" }}
             />
           ))}
           <Image

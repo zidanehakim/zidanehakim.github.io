@@ -6,6 +6,66 @@ body {
   overflow-x: hidden;
 }
 
+/* ─── GPU-composited CSS animations (no JS thread, transform-only) ─── */
+
+/* Floating orbs — each on its own path so they feel independent */
+@keyframes orb-float-1 {
+  0%, 100% { transform: translate(0px, 0px); }
+  50%       { transform: translate(55px, 38px); }
+}
+@keyframes orb-float-2 {
+  0%, 100% { transform: translate(0px, 0px); }
+  50%       { transform: translate(-32px, -22px); }
+}
+@keyframes orb-float-3 {
+  0%, 100% { transform: translate(0px, 0px); }
+  50%       { transform: translate(22px, -32px); }
+}
+
+.orb-float-1 { animation: orb-float-1 22s ease-in-out infinite; }
+.orb-float-2 { animation: orb-float-2 28s ease-in-out infinite 4s; }
+.orb-float-3 { animation: orb-float-3 18s ease-in-out infinite 8s; }
+
+/* Ghost text drift — used across sections */
+@keyframes ghost-drift-lr {
+  0%, 100% { transform: translateX(calc(-50% + 40px)); }
+  50%       { transform: translateX(calc(-50% - 40px)); }
+}
+@keyframes ghost-drift-rl {
+  0%, 100% { transform: translateX(calc(-50% - 40px)); }
+  50%       { transform: translateX(calc(-50% + 40px)); }
+}
+
+.ghost-drift-lr {
+  animation: ghost-drift-lr 10s ease-in-out infinite;
+  will-change: transform;
+}
+.ghost-drift-rl {
+  animation: ghost-drift-rl 11s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Scroll indicator bob */
+@keyframes scroll-bob {
+  0%, 100% { transform: translateX(-50%) translateY(0px); }
+  50%       { transform: translateX(-50%) translateY(5px); }
+}
+.scroll-bob {
+  animation: scroll-bob 2s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ─── Reduced motion: pause all decorative animations ─── */
+@media (prefers-reduced-motion: reduce) {
+  .orb-float-1, .orb-float-2, .orb-float-3,
+  .ghost-drift-lr, .ghost-drift-rl,
+  .scroll-bob,
+  .scan-reveal, .scan-beam,
+  .animate-fade-in {
+    animation: none !important;
+  }
+}
+
 .dot-grid {
   background-image: radial-gradient(circle, #d1d5db 1px, transparent 1px);
   background-size: 24px 24px;

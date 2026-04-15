@@ -16,9 +16,9 @@ interface TransitionLinkProps {
  * BEFORE navigation, so the overlay covers the screen before content swaps.
  *
  * Timeline:
- *   t=0ms   → startTransition: overlay slides DOWN (250ms animation)
- *   t=290ms → router.push: content swaps under the overlay (invisible to user)
- *   t=600ms → endTransition: overlay slides back UP
+ *   t=0ms    → startTransition: overlay slides IN (380ms animation)
+ *   t=420ms  → router.push: content swaps under the overlay (invisible to user)
+ *   t=1050ms → endTransition: overlay slides back OUT (420ms animation)
  */
 export function TransitionLink({ href, label, children, className, ...rest }: TransitionLinkProps) {
   const router = useRouter()
@@ -45,11 +45,11 @@ export function TransitionLink({ href, label, children, className, ...rest }: Tr
 
       const t1 = setTimeout(() => {
         router.push(href)
-      }, 290) // wait for overlay to fully cover before navigating
+      }, 420) // 40ms buffer after 380ms enter animation fully covers screen
 
       const t2 = setTimeout(() => {
         endTransition()
-      }, 620) // wait for new page to render, then reveal it
+      }, 1050) // 630ms after navigate — new page has time to fully render
 
       timers.current = [t1, t2]
     },

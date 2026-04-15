@@ -5,7 +5,6 @@ import Image from "next/image"
 import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react"
 import { projects } from "@/lib/data"
 import { Logo } from "@/components/layout/Logo"
-import { FloatingOrbs } from "@/components/ui/FloatingOrbs"
 
 // Slide variants — direction-aware enter/exit
 const slideVariants = {
@@ -75,18 +74,16 @@ export function ProjectCarousel() {
 
   return (
     <section className="dot-grid relative w-screen min-h-screen bg-white overflow-hidden flex flex-col items-center justify-center px-4 sm:px-6 md:px-16 pb-[10vh] pt-24">
-      <FloatingOrbs />
       <Logo />
 
-      {/* Ghost text */}
-      <motion.span
+      {/* Ghost text — CSS animation, no JS thread */}
+      <span
         aria-hidden
-        className="pointer-events-none absolute select-none text-[16vw] font-black text-gray-900 opacity-[0.04] whitespace-nowrap top-1/3 left-1/2 -translate-x-1/2"
-        animate={{ x: [-40, 40] }}
-        transition={{ duration: 10, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
+        className="ghost-drift-lr pointer-events-none absolute select-none text-[16vw] font-black text-gray-900 opacity-[0.04] whitespace-nowrap top-1/3"
+        style={{ left: "50%" }}
       >
         projects.
-      </motion.span>
+      </span>
 
       {/* Huge faded project index */}
       <AnimatePresence mode="wait">

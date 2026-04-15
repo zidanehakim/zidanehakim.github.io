@@ -1,57 +1,54 @@
 "use client"
-import { motion } from "framer-motion"
 
 /**
- * Web3-style floating gradient blobs for white background sections.
- * All orbs are blurred, very low opacity, pointer-events-none.
- * Position as `absolute inset-0 overflow-hidden` parent required.
+ * Soft ambient blobs for white-background sections.
+ * ⚠ No CSS filter: blur() — animated blur forces per-frame GPU repaint.
+ *   Softness is achieved via multi-stop radial gradients instead.
+ *   will-change: transform promotes each orb to its own compositor layer.
  */
 export function FloatingOrbs() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
       {/* Top-left — violet */}
-      <motion.div
-        className="absolute rounded-full"
+      <div
+        className="absolute rounded-full orb-float-1"
         style={{
-          width: "clamp(240px, 45vw, 600px)",
-          height: "clamp(240px, 45vw, 600px)",
-          background: "radial-gradient(circle, rgba(124,58,237,0.13) 0%, transparent 70%)",
-          filter: "blur(48px)",
-          top: "-15%",
-          left: "-12%",
+          width: "clamp(320px, 55vw, 700px)",
+          height: "clamp(320px, 55vw, 700px)",
+          background:
+            "radial-gradient(circle, rgba(124,58,237,0.16) 0%, rgba(124,58,237,0.07) 35%, rgba(124,58,237,0.02) 60%, transparent 75%)",
+          top: "-20%",
+          left: "-15%",
+          willChange: "transform",
         }}
-        animate={{ x: [0, 50, 0], y: [0, 35, 0] }}
-        transition={{ duration: 16, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
       />
 
       {/* Bottom-right — blue */}
-      <motion.div
-        className="absolute rounded-full"
+      <div
+        className="absolute rounded-full orb-float-2"
         style={{
-          width: "clamp(180px, 32vw, 450px)",
-          height: "clamp(180px, 32vw, 450px)",
-          background: "radial-gradient(circle, rgba(59,130,246,0.09) 0%, transparent 70%)",
-          filter: "blur(40px)",
-          bottom: "-10%",
-          right: "-8%",
+          width: "clamp(220px, 38vw, 520px)",
+          height: "clamp(220px, 38vw, 520px)",
+          background:
+            "radial-gradient(circle, rgba(59,130,246,0.12) 0%, rgba(59,130,246,0.05) 40%, rgba(59,130,246,0.01) 65%, transparent 80%)",
+          bottom: "-12%",
+          right: "-10%",
+          willChange: "transform",
         }}
-        animate={{ x: [0, -35, 0], y: [0, -25, 0] }}
-        transition={{ duration: 20, repeat: Infinity, repeatType: "mirror", ease: "easeInOut", delay: 3 }}
       />
 
       {/* Mid — indigo accent */}
-      <motion.div
-        className="absolute rounded-full"
+      <div
+        className="absolute rounded-full orb-float-3"
         style={{
-          width: "clamp(120px, 22vw, 320px)",
-          height: "clamp(120px, 22vw, 320px)",
-          background: "radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)",
-          filter: "blur(32px)",
-          top: "45%",
-          right: "15%",
+          width: "clamp(150px, 26vw, 380px)",
+          height: "clamp(150px, 26vw, 380px)",
+          background:
+            "radial-gradient(circle, rgba(99,102,241,0.10) 0%, rgba(99,102,241,0.04) 45%, transparent 75%)",
+          top: "40%",
+          right: "12%",
+          willChange: "transform",
         }}
-        animate={{ x: [0, 25, 0], y: [0, -35, 0] }}
-        transition={{ duration: 13, repeat: Infinity, repeatType: "mirror", ease: "easeInOut", delay: 6 }}
       />
     </div>
   )

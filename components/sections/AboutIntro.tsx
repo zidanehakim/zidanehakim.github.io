@@ -1,8 +1,8 @@
 "use client"
+import { useRef } from "react"
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import { Logo } from "@/components/layout/Logo"
-import { FloatingOrbs } from "@/components/ui/FloatingOrbs"
 
 const photos = Array.from({ length: 11 }, (_, i) => `/images/${i + 1}.jpg`)
 
@@ -10,9 +10,11 @@ const photos = Array.from({ length: 11 }, (_, i) => `/images/${i + 1}.jpg`)
 const rotations = [1.6, -2.2, 0.9, -1.4, 2.1, -0.7, 1.8, -2.5, 0.5, -1.3, 1.9]
 
 export function AboutIntro() {
+  const contentRef = useRef<HTMLDivElement>(null)
+  const isInView = useInView(contentRef, { once: true, margin: "-10%" })
+
   return (
     <section className="dot-grid relative w-screen bg-white overflow-hidden px-6 md:px-16 pt-24 pb-20">
-      <FloatingOrbs />
       <Logo />
 
       {/* Left sidebar — vertical label */}
@@ -32,25 +34,24 @@ export function AboutIntro() {
         <span className="text-[9px] font-mono text-gray-300 tracking-widest select-none">[ 02 / 04 ]</span>
       </div>
 
-      {/* Ghost background text */}
-      <motion.span
+      {/* Ghost background text — CSS animation, no JS thread */}
+      <span
         aria-hidden
-        className="pointer-events-none absolute select-none text-[18vw] font-black text-gray-900 opacity-[0.04] whitespace-nowrap top-[10%] left-1/2 -translate-x-1/2"
-        animate={{ x: [40, -40] }}
-        transition={{ duration: 10, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
+        className="ghost-drift-rl pointer-events-none absolute select-none text-[18vw] font-black text-gray-900 opacity-[0.04] whitespace-nowrap top-[10%]"
+        style={{ left: "50%" }}
       >
         about.
-      </motion.span>
+      </span>
 
       <div className="relative z-10 w-full max-w-5xl mx-auto">
 
         {/* ── Top: intro ── */}
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+        <div ref={contentRef} className="grid md:grid-cols-2 gap-12 items-center mb-16">
 
           {/* Text */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="flex flex-col gap-5"
           >
@@ -100,7 +101,7 @@ export function AboutIntro() {
           {/* Decorative image */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
             className="relative flex items-center justify-center"
           >
@@ -118,7 +119,7 @@ export function AboutIntro() {
         {/* ── Moments: polaroid wall ── */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <div className="flex items-center gap-3 mb-6">

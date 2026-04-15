@@ -4,7 +4,6 @@ import { motion, useInView } from "framer-motion"
 import Image from "next/image"
 import { frontEnd, backEnd } from "@/lib/data"
 import { containerVariants, itemVariants } from "@/lib/motion"
-import { FloatingOrbs } from "@/components/ui/FloatingOrbs"
 
 function SkillGrid({ skills, title }: { skills: string[]; title: string }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -66,17 +65,15 @@ export function Skills() {
 
   return (
     <section className="dot-grid relative w-full bg-white overflow-hidden px-6 sm:px-8 md:px-16 py-24">
-      <FloatingOrbs />
 
-      {/* Ghost background text */}
-      <motion.span
+      {/* Ghost background text — CSS animation, no JS thread */}
+      <span
         aria-hidden
-        className="pointer-events-none absolute select-none text-[16vw] font-black text-gray-900 opacity-[0.03] whitespace-nowrap top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"
-        animate={{ x: [30, -30] }}
-        transition={{ duration: 11, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
+        className="ghost-drift-rl pointer-events-none absolute select-none text-[16vw] font-black text-gray-900 opacity-[0.03] whitespace-nowrap top-1/2 -translate-y-1/2"
+        style={{ left: "50%" }}
       >
         skills.
-      </motion.span>
+      </span>
 
       {/* Giant section number — bottom right, offset behind content */}
       <span

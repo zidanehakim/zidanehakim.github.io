@@ -1,6 +1,6 @@
 "use client"
 import { useRef, useEffect, useState } from "react"
-import { motion, useInView } from "framer-motion"
+import { useInView } from "framer-motion"
 import { identityNodes } from "@/lib/data"
 
 function measureTextWidth(text: string): number {
@@ -136,9 +136,16 @@ export function IdentityShowcase() {
     window.addEventListener("resize", resize)
 
     startTimeRef.current = performance.now()
+    let lastDraw = 0
+    const TARGET_FPS = 30
+    const FRAME_MS = 1000 / TARGET_FPS
 
     const loop = (t: number) => {
-      drawConstellation(canvas, t, startTimeRef.current)
+      // Skip draw when tab is hidden or not enough time has passed (30fps cap)
+      if (!document.hidden && t - lastDraw >= FRAME_MS) {
+        drawConstellation(canvas, t, startTimeRef.current)
+        lastDraw = t
+      }
       animFrameRef.current = requestAnimationFrame(loop)
     }
     animFrameRef.current = requestAnimationFrame(loop)
@@ -158,24 +165,6 @@ export function IdentityShowcase() {
       {/* Canvas for constellation */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 
-      {/* Web3 radial glow — much more visible */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: "radial-gradient(ellipse 65% 55% at 50% 50%, rgba(124,58,237,0.22) 0%, rgba(99,50,200,0.08) 50%, transparent 75%)",
-        }}
-      />
-
-      {/* Outer rings */}
-      {[160, 260, 360].map((r, i) => (
-        <motion.div
-          key={r}
-          className="absolute rounded-full border border-violet-400/[0.18] pointer-events-none"
-          style={{ width: r * 2, height: r * 2, top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
-          animate={{ scale: [1, 1.05, 1], opacity: [0.5, 0.15, 0.5] }}
-          transition={{ duration: 5 + i * 1.5, repeat: Infinity, delay: i * 1.2, ease: "easeInOut" }}
-        />
-      ))}
 
       {/* ASCII corners */}
       <span className="absolute top-4 left-4 font-mono text-violet-800/70 text-sm leading-tight pointer-events-none z-10 whitespace-pre">

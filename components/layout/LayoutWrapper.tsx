@@ -17,15 +17,17 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
         initial={{ y: "-100%" }}
         animate={{ y: isTransitioning ? "0%" : "-100%" }}
         transition={{
-          duration: 0.28,
-          ease: isTransitioning ? [0.76, 0, 0.24, 1] : [0.76, 0, 0.24, 1],
+          duration: isTransitioning ? 0.38 : 0.42,
+          ease: isTransitioning
+            ? [0.76, 0, 0.24, 1]   // sharp ease-in-out — snaps in quickly
+            : [0.22, 1, 0.36, 1],  // ease-out — glides away revealing new page
         }}
         className="fixed inset-0 bg-gray-950 z-[60] flex flex-col items-center justify-center pointer-events-none gap-3"
       >
         {/* Page label */}
         <motion.span
-          animate={{ opacity: isTransitioning ? 1 : 0, y: isTransitioning ? 0 : 6 }}
-          transition={{ duration: 0.18, delay: isTransitioning ? 0.1 : 0 }}
+          animate={{ opacity: isTransitioning ? 1 : 0, y: isTransitioning ? 0 : 8 }}
+          transition={{ duration: 0.22, delay: isTransitioning ? 0.14 : 0 }}
           className="text-white font-black capitalize select-none"
           style={{ fontSize: "clamp(2.5rem, 10vw, 6rem)", letterSpacing: "-0.02em" }}
         >
@@ -35,7 +37,7 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
         {/* Thin violet progress line at the bottom of the overlay */}
         <motion.div
           animate={{ scaleX: isTransitioning ? 1 : 0, opacity: isTransitioning ? 1 : 0 }}
-          transition={{ duration: 0.28, delay: isTransitioning ? 0.05 : 0 }}
+          transition={{ duration: 0.38, delay: isTransitioning ? 0.08 : 0 }}
           className="absolute bottom-0 left-0 right-0 h-[2px] bg-violet-500 origin-left"
         />
 

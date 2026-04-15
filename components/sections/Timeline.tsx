@@ -39,7 +39,7 @@ function TimelineEntry({ obj, index }: { obj: typeof timeline[0]; index: number 
       >
         {/* Connector line (right side) */}
         {!isOdd && (
-          <div className="h-[2px] lg:w-[5em] md:w-[4em] w-[2em] bg-violet-800/50 self-center" />
+          <div className="h-[2px] lg:w-[5em] md:w-[4em] w-[2em] bg-violet-800/50 mt-[7px]" />
         )}
 
         {/* Card */}
@@ -61,7 +61,7 @@ function TimelineEntry({ obj, index }: { obj: typeof timeline[0]; index: number 
 
         {/* Connector line (left side) */}
         {isOdd && (
-          <div className="h-[2px] lg:w-[5em] md:w-[4em] w-[2em] bg-violet-800/50 self-center" />
+          <div className="h-[2px] lg:w-[5em] md:w-[4em] w-[2em] bg-violet-800/50 mt-[7px]" />
         )}
       </motion.div>
     </div>
@@ -96,15 +96,14 @@ export function Timeline() {
         }}
       />
 
-      {/* Ghost text */}
-      <motion.span
+      {/* Ghost text — CSS animation, no JS thread */}
+      <span
         aria-hidden
-        className="pointer-events-none absolute select-none text-[14vw] font-black text-white/[0.025] whitespace-nowrap top-8 left-1/2 -translate-x-1/2"
-        animate={{ x: [-30, 30] }}
-        transition={{ duration: 12, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
+        className="ghost-drift-lr pointer-events-none absolute select-none text-[14vw] font-black text-white/[0.025] whitespace-nowrap top-8"
+        style={{ left: "50%" }}
       >
         timeline.
-      </motion.span>
+      </span>
 
       {/* Header */}
       <div className="absolute md:left-[53%] left-1/2 -translate-x-1/2 md:translate-x-0 top-10 flex flex-col gap-1">

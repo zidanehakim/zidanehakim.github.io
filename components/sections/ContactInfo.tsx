@@ -2,7 +2,6 @@
 import { motion } from "framer-motion"
 import { Mail, Globe, MessageCircle, Phone, MapPin, User } from "lucide-react"
 import { Logo } from "@/components/layout/Logo"
-import { FloatingOrbs } from "@/components/ui/FloatingOrbs"
 import { contactInfo } from "@/lib/data"
 
 const contactCards = [
@@ -41,7 +40,6 @@ const infoRows = [
 export function ContactInfo() {
   return (
     <section className="dot-grid relative w-screen min-h-screen bg-white overflow-hidden flex flex-col items-center justify-center px-6 md:px-16 pt-24 pb-16">
-      <FloatingOrbs />
       <Logo />
 
       {/* Rotated availability badge — hidden on small screens to avoid overlap */}
@@ -62,15 +60,14 @@ export function ContactInfo() {
         <span className="text-[9px] font-mono text-gray-300 tracking-widest select-none">[ 04 / 04 ]</span>
       </div>
 
-      {/* Ghost background text */}
-      <motion.span
+      {/* Ghost background text — CSS animation, no JS thread */}
+      <span
         aria-hidden
-        className="pointer-events-none absolute select-none text-[14vw] font-black text-gray-900 opacity-[0.04] whitespace-nowrap top-1/3 left-1/2 -translate-x-1/2"
-        animate={{ x: [30, -30] }}
-        transition={{ duration: 10, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
+        className="ghost-drift-rl pointer-events-none absolute select-none text-[14vw] font-black text-gray-900 opacity-[0.04] whitespace-nowrap top-1/3"
+        style={{ left: "50%" }}
       >
         contacts.
-      </motion.span>
+      </span>
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-4xl mx-auto">
