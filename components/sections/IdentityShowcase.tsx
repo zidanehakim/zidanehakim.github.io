@@ -1,6 +1,6 @@
 "use client"
 import { useRef, useEffect, useState } from "react"
-import { useInView } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import { identityNodes } from "@/lib/data"
 
 function measureTextWidth(text: string): number {
@@ -150,6 +150,25 @@ export function IdentityShowcase() {
     >
       {/* Canvas for constellation */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
+
+      {/* Web3 radial glow behind the center content */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(124,58,237,0.07) 0%, transparent 70%)",
+        }}
+      />
+
+      {/* Outer hex ring — purely decorative */}
+      {[160, 260, 360].map((r, i) => (
+        <motion.div
+          key={r}
+          className="absolute rounded-full border border-violet-500/[0.06] pointer-events-none"
+          style={{ width: r * 2, height: r * 2, top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
+          animate={{ scale: [1, 1.04, 1], opacity: [0.3, 0.08, 0.3] }}
+          transition={{ duration: 5 + i * 1.5, repeat: Infinity, delay: i * 1.2, ease: "easeInOut" }}
+        />
+      ))}
 
       {/* ASCII corners */}
       <span className="absolute top-4 left-4 font-mono text-[#1e1e38] text-sm leading-tight pointer-events-none z-10 whitespace-pre">

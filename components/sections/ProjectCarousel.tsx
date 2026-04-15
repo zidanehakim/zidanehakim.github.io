@@ -5,6 +5,7 @@ import Image from "next/image"
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react"
 import { projects } from "@/lib/data"
 import { Logo } from "@/components/layout/Logo"
+import { FloatingOrbs } from "@/components/ui/FloatingOrbs"
 
 export function ProjectCarousel() {
   const [pos, setPos] = useState(0)
@@ -22,7 +23,8 @@ export function ProjectCarousel() {
   const project = projects[pos]
 
   return (
-    <section className="dot-grid relative w-screen min-h-screen bg-white overflow-hidden flex flex-col items-center justify-center px-6 md:px-16 pb-[10vh] pt-24">
+    <section className="dot-grid relative w-screen min-h-screen bg-white overflow-hidden flex flex-col items-center justify-center px-4 sm:px-6 md:px-16 pb-[10vh] pt-24">
+      <FloatingOrbs />
       <Logo />
 
       {/* Ghost background text */}
@@ -91,7 +93,7 @@ export function ProjectCarousel() {
 
       {/* Main card area */}
       <div className="relative z-10 w-full max-w-5xl">
-        <div className="grid lg:grid-cols-2 gap-8 items-center">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
 
           {/* Project info panel */}
           <motion.div

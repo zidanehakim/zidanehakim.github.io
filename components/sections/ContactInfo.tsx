@@ -2,6 +2,7 @@
 import { motion } from "framer-motion"
 import { Mail, Globe, MessageCircle, Phone, MapPin, User } from "lucide-react"
 import { Logo } from "@/components/layout/Logo"
+import { FloatingOrbs } from "@/components/ui/FloatingOrbs"
 import { contactInfo } from "@/lib/data"
 
 const contactCards = [
@@ -40,10 +41,11 @@ const infoRows = [
 export function ContactInfo() {
   return (
     <section className="dot-grid relative w-screen min-h-screen bg-white overflow-hidden flex flex-col items-center justify-center px-6 md:px-16 pt-24 pb-16">
+      <FloatingOrbs />
       <Logo />
 
-      {/* Rotated availability badge */}
-      <div className="absolute top-24 right-6 md:right-14 rotate-[8deg] z-10 pointer-events-none select-none">
+      {/* Rotated availability badge — hidden on small screens to avoid overlap */}
+      <div className="absolute top-24 right-6 md:right-14 rotate-[8deg] z-10 pointer-events-none select-none hidden sm:block">
         <div className="flex items-center gap-2 border-2 border-green-500/60 text-green-600 font-bold font-mono text-[10px] px-3 py-1.5 rounded tracking-[0.18em] uppercase">
           <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse inline-block" />
           OPEN · TO · WORK

@@ -2,6 +2,7 @@
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { Logo } from "@/components/layout/Logo"
+import { FloatingOrbs } from "@/components/ui/FloatingOrbs"
 
 const photos = Array.from({ length: 11 }, (_, i) => `/images/${i + 1}.jpg`)
 
@@ -11,6 +12,7 @@ const rotations = [1.6, -2.2, 0.9, -1.4, 2.1, -0.7, 1.8, -2.5, 0.5, -1.3, 1.9]
 export function AboutIntro() {
   return (
     <section className="dot-grid relative w-screen bg-white overflow-hidden px-6 md:px-16 pt-24 pb-20">
+      <FloatingOrbs />
       <Logo />
 
       {/* Left sidebar — vertical label */}

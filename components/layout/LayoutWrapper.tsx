@@ -1,58 +1,50 @@
 "use client"
 import { motion } from "framer-motion"
-import { usePathname } from "next/navigation"
-import { useEffect, useRef, useState } from "react"
 import { useNavStore } from "@/store/useNavStore"
 
-function getLabel(pathname: string) {
-  if (pathname === "/") return "home"
-  return pathname.replace(/^\//, "").replace(/\/$/, "")
-}
-
 export function LayoutWrapper({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname() ?? "/"
-  const { isTransitioning, setTransitioning } = useNavStore()
-  const [hasMounted, setHasMounted] = useState(false)
-  const [label, setLabel] = useState(getLabel(pathname))
-  const prevPathname = useRef<string | null>(null)
-
-  useEffect(() => {
-    setHasMounted(true)
-  }, [])
-
-  useEffect(() => {
-    // Skip first run — only animate on navigation, not initial load
-    if (prevPathname.current === null) {
-      prevPathname.current = pathname
-      return
-    }
-    prevPathname.current = pathname
-    setLabel(getLabel(pathname))
-    setTransitioning(true)
-    // Hold overlay for 600ms then slide back up
-    const t = setTimeout(() => setTransitioning(false), 650)
-    return () => clearTimeout(t)
-  }, [pathname, setTransitioning])
+  const { isTransitioning, targetLabel } = useNavStore()
 
   return (
     <>
-      {/* Overlay slides DOWN to cover content, then slides back UP — skipped on first load */}
-      {hasMounted && (
-        <motion.div
-          animate={{ y: isTransitioning ? "0%" : "-100%" }}
-          transition={{ duration: 0.35, ease: isTransitioning ? "easeIn" : "easeOut" }}
-          initial={{ y: "-100%" }}
-          className="fixed inset-0 bg-gray-950 z-50 flex items-center justify-center pointer-events-none"
+      {/**
+       * Overlay starts off-screen top (y: "-100%") via `initial`.
+       * TransitionLink.startTransition() moves it to y:"0%" (covers screen).
+       * TransitionLink.endTransition() moves it back to y:"-100%".
+       * No pathname-watching needed — timing is controlled by TransitionLink.
+       */}
+      <motion.div
+        initial={{ y: "-100%" }}
+        animate={{ y: isTransitioning ? "0%" : "-100%" }}
+        transition={{
+          duration: 0.28,
+          ease: isTransitioning ? [0.76, 0, 0.24, 1] : [0.76, 0, 0.24, 1],
+        }}
+        className="fixed inset-0 bg-gray-950 z-[60] flex flex-col items-center justify-center pointer-events-none gap-3"
+      >
+        {/* Page label */}
+        <motion.span
+          animate={{ opacity: isTransitioning ? 1 : 0, y: isTransitioning ? 0 : 6 }}
+          transition={{ duration: 0.18, delay: isTransitioning ? 0.1 : 0 }}
+          className="text-white font-black capitalize select-none"
+          style={{ fontSize: "clamp(2.5rem, 10vw, 6rem)", letterSpacing: "-0.02em" }}
         >
-          <motion.span
-            animate={{ opacity: isTransitioning ? 1 : 0 }}
-            transition={{ duration: 0.2, delay: isTransitioning ? 0.15 : 0 }}
-            className="text-white text-6xl md:text-8xl font-black tracking-tight capitalize select-none"
-          >
-            {label}
-          </motion.span>
-        </motion.div>
-      )}
+          {targetLabel || "…"}
+        </motion.span>
+
+        {/* Thin violet progress line at the bottom of the overlay */}
+        <motion.div
+          animate={{ scaleX: isTransitioning ? 1 : 0, opacity: isTransitioning ? 1 : 0 }}
+          transition={{ duration: 0.28, delay: isTransitioning ? 0.05 : 0 }}
+          className="absolute bottom-0 left-0 right-0 h-[2px] bg-violet-500 origin-left"
+        />
+
+        {/* Subtle corner accents */}
+        <span className="absolute top-4 left-4 font-mono text-[#1a1a2e] text-xs select-none">┌──</span>
+        <span className="absolute top-4 right-4 font-mono text-[#1a1a2e] text-xs select-none text-right">──┐</span>
+        <span className="absolute bottom-4 left-4 font-mono text-[#1a1a2e] text-xs select-none">└──</span>
+        <span className="absolute bottom-4 right-4 font-mono text-[#1a1a2e] text-xs select-none text-right">──┘</span>
+      </motion.div>
 
       {children}
     </>

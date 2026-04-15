@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react"
 import Image from "next/image"
-import Link from "next/link"
 import { motion } from "framer-motion"
 import { displayTexts, socials } from "@/lib/data"
+import { TransitionLink } from "@/components/layout/TransitionLink"
+import { FloatingOrbs } from "@/components/ui/FloatingOrbs"
 
 // Simple SVG brand icons (Lucide doesn't ship brand icons)
 function LinkedInIcon({ size = 22 }: { size?: number }) {
@@ -96,6 +97,7 @@ export function Hero() {
 
   return (
     <section className="dot-grid relative w-screen h-screen bg-white overflow-hidden flex items-center justify-center">
+      <FloatingOrbs />
 
       {/* ── Asymmetric edge decorations ── */}
 
@@ -166,18 +168,28 @@ export function Hero() {
         </div>
 
         <motion.div
-          className="hidden md:flex md:flex-1 items-center justify-center"
+          className="hidden md:flex md:flex-1 items-center justify-center relative"
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
+          {/* Web3 pulse rings behind image */}
+          {[220, 310, 400].map((size, i) => (
+            <motion.div
+              key={size}
+              className="absolute rounded-full border border-violet-400/[0.12] pointer-events-none"
+              style={{ width: size, height: size }}
+              animate={{ scale: [1, 1.06, 1], opacity: [0.5, 0.1, 0.5] }}
+              transition={{ duration: 4 + i, repeat: Infinity, delay: i * 1.3, ease: "easeInOut" }}
+            />
+          ))}
           <Image
             src="/images/hero.png"
             width={400}
             height={500}
             priority
             alt="Yazidane Hakim"
-            className="object-contain drop-shadow-xl"
+            className="object-contain drop-shadow-xl relative z-10"
           />
         </motion.div>
 
@@ -214,12 +226,13 @@ export function Hero() {
             >
               Resume
             </a>
-            <Link
+            <TransitionLink
               href="/about"
+              label="about"
               className="px-6 py-2.5 rounded-full bg-gray-900 text-white font-semibold text-sm hover:shadow-[0_0_20px_#7c3aed66] hover:bg-violet-700 transition-all"
             >
               About
-            </Link>
+            </TransitionLink>
           </div>
 
           {/* Social icons */}

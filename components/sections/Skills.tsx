@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion"
 import Image from "next/image"
 import { frontEnd, backEnd } from "@/lib/data"
 import { containerVariants, itemVariants } from "@/lib/motion"
+import { FloatingOrbs } from "@/components/ui/FloatingOrbs"
 
 function SkillGrid({ skills, title }: { skills: string[]; title: string }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -33,13 +34,20 @@ function SkillGrid({ skills, title }: { skills: string[]; title: string }) {
             className="group flex flex-col items-center gap-1.5 cursor-pointer"
             title={slug}
           >
-            <div className="w-14 h-14 rounded-xl bg-white border border-gray-100 shadow-sm flex items-center justify-center group-hover:border-violet-300 group-hover:shadow-[0_0_14px_#7c3aed22] transition-all">
+            <div className="w-14 h-14 rounded-xl bg-white border border-gray-100 shadow-sm flex items-center justify-center group-hover:border-violet-300 group-hover:shadow-[0_0_16px_#7c3aed33] transition-all relative overflow-hidden">
+              {/* Holographic shimmer — Web3 foil effect on hover */}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"
+                style={{
+                  background: "linear-gradient(135deg, rgba(124,58,237,0.18) 0%, rgba(59,130,246,0.14) 40%, rgba(167,139,250,0.18) 80%, rgba(236,72,153,0.10) 100%)",
+                }}
+              />
               <Image
                 src={`/${slug}.svg`}
                 alt={slug}
                 width={36}
                 height={36}
-                className="p-1 transition-transform group-hover:scale-110 duration-200"
+                className="p-1 transition-transform group-hover:scale-110 duration-200 relative z-10"
               />
             </div>
             <span className="text-[10px] text-gray-400 font-semibold tracking-wide uppercase group-hover:text-violet-500 transition-colors">
@@ -57,7 +65,8 @@ export function Skills() {
   const isInView = useInView(headerRef, { once: true })
 
   return (
-    <section className="dot-grid relative w-full bg-white overflow-hidden px-6 md:px-16 py-24">
+    <section className="dot-grid relative w-full bg-white overflow-hidden px-6 sm:px-8 md:px-16 py-24">
+      <FloatingOrbs />
 
       {/* Ghost background text */}
       <motion.span

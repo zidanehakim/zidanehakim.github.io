@@ -45,8 +45,8 @@ function TimelineEntry({ obj, index }: { obj: typeof timeline[0]; index: number 
         {/* Card */}
         <div
           className={`rounded-xl border border-gray-700/60 bg-gray-800/60 backdrop-blur-sm
-            ${isOdd ? "text-end pe-4 ps-4" : "text-start ps-4 pe-4"}
-            lg:w-[22em] md:w-[30vw] w-[40vw] p-4`}
+            ${isOdd ? "text-end" : "text-start"}
+            lg:w-[22em] md:w-[29vw] sm:w-[36vw] w-[42vw] p-3 md:p-4`}
         >
           <div className={`flex mb-2 ${isOdd ? "justify-end" : "justify-start"}`}>
             <span className={`text-xs font-bold rounded-lg py-0.5 px-3 ${badgeClass}`}>
@@ -143,7 +143,7 @@ export function Timeline() {
       </div>
 
       {/* Entries */}
-      <div className="relative" style={{ height: `${totalHeight}em` }}>
+      <div className="relative overflow-x-clip" style={{ height: `${totalHeight}em` }}>
         {timeline.map((obj, i) => (
           <TimelineEntry key={i} obj={obj} index={i} />
         ))}

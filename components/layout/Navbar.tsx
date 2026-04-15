@@ -1,8 +1,8 @@
 "use client"
-import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Home, User, Briefcase, Phone } from "lucide-react"
 import { useNavStore } from "@/store/useNavStore"
+import { TransitionLink } from "@/components/layout/TransitionLink"
 import { cn } from "@/lib/utils"
 
 const navItems = [
@@ -28,7 +28,7 @@ export function Navbar() {
         {navItems.map(({ href, icon: Icon, label }) => {
           const active = pathname === href || (href !== "/" && pathname.startsWith(href))
           return (
-            <Link key={href} href={href} aria-label={label}>
+            <TransitionLink key={href} href={href} label={label} aria-label={label}>
               <div
                 className={cn(
                   "w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110",
@@ -39,7 +39,7 @@ export function Navbar() {
               >
                 <Icon size={18} color="white" />
               </div>
-            </Link>
+            </TransitionLink>
           )
         })}
       </div>
