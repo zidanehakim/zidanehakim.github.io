@@ -42,51 +42,58 @@ function drawConstellation(
     const nx = cx + Math.cos(rad) * r
     const ny = cy + Math.sin(rad) * r
 
-    // pulse: dim/bright cycle, same value used for dot AND text
+    // pulse: never goes fully dark (dimMin raised to 0.5)
     const pulse = Math.sin(elapsed * 1.3 + i * 1.1) * 0.5 + 0.5
-    const dimMin = 0.25,
+    const dimMin = 0.5,
       dimMax = 1.0
     const brightness = (dimMin + pulse * (dimMax - dimMin)) * fadeIn
 
-    // dashed edge from center
+    // dashed edge from center — brighter stroke
     ctx.save()
-    ctx.globalAlpha = (0.08 + pulse * 0.14) * fadeIn
+    ctx.globalAlpha = (0.25 + pulse * 0.35) * fadeIn
     ctx.beginPath()
     ctx.moveTo(cx, cy)
     ctx.lineTo(nx, ny)
     ctx.strokeStyle = "#7c3aed"
-    ctx.lineWidth = 1
+    ctx.lineWidth = 1.5
     ctx.setLineDash([4, 8])
     ctx.stroke()
     ctx.setLineDash([])
     ctx.restore()
 
-    // glow halo
-    const g = ctx.createRadialGradient(nx, ny, 0, nx, ny, 22)
-    g.addColorStop(0, `rgba(124,58,237,${0.22 * brightness})`)
+    // glow halo — larger + more opaque
+    const g = ctx.createRadialGradient(nx, ny, 0, nx, ny, 36)
+    g.addColorStop(0, `rgba(167,139,250,${0.55 * brightness})`)
+    g.addColorStop(0.4, `rgba(124,58,237,${0.30 * brightness})`)
     g.addColorStop(1, "transparent")
     ctx.beginPath()
-    ctx.arc(nx, ny, 22, 0, Math.PI * 2)
+    ctx.arc(nx, ny, 36, 0, Math.PI * 2)
     ctx.fillStyle = g
     ctx.fill()
 
-    // dot
+    // dot — brighter, slightly larger
     ctx.beginPath()
-    ctx.arc(nx, ny, 3.5 + pulse * 1.8, 0, Math.PI * 2)
-    ctx.fillStyle = `rgba(167,139,250,${brightness})`
+    ctx.arc(nx, ny, 4.5 + pulse * 2, 0, Math.PI * 2)
+    ctx.fillStyle = `rgba(221,214,254,${brightness})`  // violet-200
     ctx.fill()
 
-    // label — pushed outward from center
+    // dot inner core highlight
+    ctx.beginPath()
+    ctx.arc(nx, ny, 2, 0, Math.PI * 2)
+    ctx.fillStyle = `rgba(255,255,255,${brightness * 0.8})`
+    ctx.fill()
+
+    // label — pushed outward from center, brighter
     const dx = nx - cx,
       dy = ny - cy
     const dl = Math.sqrt(dx * dx + dy * dy)
-    const lx = nx + (dx / dl) * 24
-    const ly = ny + (dy / dl) * 24
+    const lx = nx + (dx / dl) * 28
+    const ly = ny + (dy / dl) * 28
 
     ctx.save()
     ctx.globalAlpha = brightness
-    ctx.font = "bold 11px monospace"
-    ctx.fillStyle = "#c4b5fd"
+    ctx.font = "bold 12px monospace"
+    ctx.fillStyle = "#ede9fe"  // violet-100
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
     ctx.fillText(n.label, lx, ly)
@@ -151,48 +158,48 @@ export function IdentityShowcase() {
       {/* Canvas for constellation */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 
-      {/* Web3 radial glow behind the center content */}
+      {/* Web3 radial glow — much more visible */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(124,58,237,0.07) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse 65% 55% at 50% 50%, rgba(124,58,237,0.22) 0%, rgba(99,50,200,0.08) 50%, transparent 75%)",
         }}
       />
 
-      {/* Outer hex ring — purely decorative */}
+      {/* Outer rings */}
       {[160, 260, 360].map((r, i) => (
         <motion.div
           key={r}
-          className="absolute rounded-full border border-violet-500/[0.06] pointer-events-none"
+          className="absolute rounded-full border border-violet-400/[0.18] pointer-events-none"
           style={{ width: r * 2, height: r * 2, top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
-          animate={{ scale: [1, 1.04, 1], opacity: [0.3, 0.08, 0.3] }}
+          animate={{ scale: [1, 1.05, 1], opacity: [0.5, 0.15, 0.5] }}
           transition={{ duration: 5 + i * 1.5, repeat: Infinity, delay: i * 1.2, ease: "easeInOut" }}
         />
       ))}
 
       {/* ASCII corners */}
-      <span className="absolute top-4 left-4 font-mono text-[#1e1e38] text-sm leading-tight pointer-events-none z-10 whitespace-pre">
+      <span className="absolute top-4 left-4 font-mono text-violet-800/70 text-sm leading-tight pointer-events-none z-10 whitespace-pre">
         {"┌──\n│"}
       </span>
-      <span className="absolute top-4 right-4 font-mono text-[#1e1e38] text-sm leading-tight text-right pointer-events-none z-10 whitespace-pre">
+      <span className="absolute top-4 right-4 font-mono text-violet-800/70 text-sm leading-tight text-right pointer-events-none z-10 whitespace-pre">
         {"──┐\n│"}
       </span>
-      <span className="absolute bottom-4 left-4 font-mono text-[#1e1e38] text-sm leading-tight pointer-events-none z-10 whitespace-pre">
+      <span className="absolute bottom-4 left-4 font-mono text-violet-800/70 text-sm leading-tight pointer-events-none z-10 whitespace-pre">
         {"│\n└──"}
       </span>
-      <span className="absolute bottom-4 right-4 font-mono text-[#1e1e38] text-sm leading-tight text-right pointer-events-none z-10 whitespace-pre">
+      <span className="absolute bottom-4 right-4 font-mono text-violet-800/70 text-sm leading-tight text-right pointer-events-none z-10 whitespace-pre">
         {"│\n──┘"}
       </span>
 
       {/* System status — top right */}
       <div className="absolute top-4 right-10 flex items-center gap-1.5 pointer-events-none z-10">
-        <span className="w-1.5 h-1.5 rounded-full bg-green-500/60 animate-pulse" />
-        <span className="font-mono text-[9px] text-[#2a2a50] tracking-widest">SYS:ONLINE</span>
+        <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+        <span className="font-mono text-[9px] text-green-400/70 tracking-widest">SYS:ONLINE</span>
       </div>
 
       {/* Coordinates — bottom left */}
       <div className="absolute bottom-4 left-10 pointer-events-none z-10">
-        <span className="font-mono text-[9px] text-[#1e1e3a] tracking-wider">
+        <span className="font-mono text-[9px] text-violet-400/50 tracking-wider">
           25.0174°N / 121.5370°E
         </span>
       </div>
@@ -204,7 +211,7 @@ export function IdentityShowcase() {
           {/* Ghost (dim) version always present for layout */}
           <span
             className="text-[clamp(1.5rem,5vw,2.5rem)] font-extrabold tracking-tight select-none"
-            style={{ color: "#0d0d20" }}
+            style={{ color: "#2d2060" }}
           >
             Yazidane Hakim
           </span>
@@ -214,7 +221,8 @@ export function IdentityShowcase() {
             <>
               <span
                 key={`reveal-${scanning}`}
-                className="absolute inset-0 text-[clamp(1.5rem,5vw,2.5rem)] font-extrabold tracking-tight text-[#e8e8ff] scan-reveal overflow-hidden whitespace-nowrap"
+                className="absolute inset-0 text-[clamp(1.5rem,5vw,2.5rem)] font-extrabold tracking-tight text-white scan-reveal overflow-hidden whitespace-nowrap"
+                style={{ textShadow: "0 0 30px rgba(167,139,250,0.6), 0 0 60px rgba(124,58,237,0.3)" }}
               >
                 Yazidane Hakim
               </span>
@@ -236,7 +244,7 @@ export function IdentityShowcase() {
         {scanning && (
           <p
             key={`tagline-${scanning}`}
-            className="font-mono text-xs tracking-widest uppercase text-[#30305a] animate-fade-in"
+            className="font-mono text-xs tracking-widest uppercase text-violet-400/70 animate-fade-in"
             style={{ animationDelay: "1.5s", animationFillMode: "both" }}
           >
             full-stack engineer · ntu · taiwan
@@ -250,15 +258,15 @@ export function IdentityShowcase() {
             className="flex flex-col items-center gap-0.5 mt-1 animate-fade-in"
             style={{ animationDelay: "2.8s", animationFillMode: "both" }}
           >
-            <p className="font-mono text-[9px] text-[#1e1e40] tracking-widest">
+            <p className="font-mono text-[9px] text-violet-700/80 tracking-widest">
               ─────────────────────────────
             </p>
             <div className="flex gap-6">
-              <p className="font-mono text-[9px] tracking-wider text-[#2e2e5a]">
-                ID: <span className="text-violet-500/70">YH-2025</span>
+              <p className="font-mono text-[9px] tracking-wider text-violet-400/60">
+                ID: <span className="text-violet-300">YH-2025</span>
               </p>
-              <p className="font-mono text-[9px] tracking-wider text-[#2e2e5a]">
-                STATUS: <span className="text-green-500/70">VERIFIED</span>
+              <p className="font-mono text-[9px] tracking-wider text-violet-400/60">
+                STATUS: <span className="text-green-400">VERIFIED</span>
               </p>
             </div>
           </div>
