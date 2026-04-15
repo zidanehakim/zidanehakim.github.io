@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react"
 import { projects } from "@/lib/data"
+import { Logo } from "@/components/layout/Logo"
 
 export function ProjectCarousel() {
   const [pos, setPos] = useState(0)
@@ -18,104 +19,140 @@ export function ProjectCarousel() {
     percent.set(idx / (projects.length - 1))
   }, [percent])
 
+  const project = projects[pos]
+
   return (
-    <section className="w-screen min-h-screen flex flex-col items-center justify-center bg-white relative pb-[10vh]">
+    <section className="dot-grid relative w-screen min-h-screen bg-white overflow-hidden flex flex-col items-center justify-center px-6 md:px-16 pb-[10vh] pt-24">
+      <Logo />
+
+      {/* Ghost background text */}
+      <motion.span
+        aria-hidden
+        className="pointer-events-none absolute select-none text-[16vw] font-black text-gray-900 opacity-[0.04] whitespace-nowrap top-1/3 left-1/2 -translate-x-1/2"
+        animate={{ x: [-40, 40] }}
+        transition={{ duration: 10, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
+      >
+        projects.
+      </motion.span>
+
       {/* Header */}
-      <div className="w-[90vw] max-w-[50em] m-auto mb-4 text-center">
-        <h1 className="font-bold text-5xl text-gray-900">projects.</h1>
-        <h2 className="font-bold text-xl text-gray-500 mt-4">Finished and on-going projects</h2>
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="relative z-10 text-center mb-10 w-full max-w-2xl"
+      >
+        <p className="text-gray-500 text-sm font-medium tracking-widest uppercase mb-3">what i built</p>
+        <h1 className="font-black text-5xl text-gray-900">Projects</h1>
+
         {/* Spring progress bar */}
-        <div className="rounded-md h-1 bg-gray-100 mt-5 m-auto overflow-hidden">
+        <div className="rounded-full h-1 bg-gray-100 mt-5 max-w-xs mx-auto overflow-hidden">
           <motion.div
             style={{ width: loading }}
-            className="h-full bg-violet-700 rounded-md"
-          />
-        </div>
-      </div>
-
-      <div className="grid lg:grid-cols-2 grid-cols-1 mt-6 gap-8 items-center w-[90vw] max-w-5xl">
-        {/* Decorative business image */}
-        <div className="lg:flex hidden justify-end">
-          <Image
-            src="/images/business.png"
-            alt="business"
-            width={320}
-            height={320}
-            className="opacity-80"
+            className="h-full bg-violet-600 rounded-full"
           />
         </div>
 
-        {/* Carousel */}
-        <div className="relative w-full max-w-[450px] mx-auto">
-          {/* Prev button */}
-          {pos > 0 && (
-            <button
-              onClick={() => goTo(pos - 1)}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800 rounded-full p-1 hover:brightness-75 transition"
-            >
-              <ChevronLeft color="white" size={20} />
-            </button>
-          )}
+        {/* Slide counter */}
+        <p className="text-gray-400 text-xs font-semibold mt-2 tracking-widest">
+          {String(pos + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
+        </p>
+      </motion.div>
 
-          {/* Next button */}
-          {pos < projects.length - 1 && (
-            <button
-              onClick={() => goTo(pos + 1)}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800 rounded-full p-1 hover:brightness-75 transition"
-            >
-              <ChevronRight color="white" size={20} />
-            </button>
-          )}
+      {/* Main card area */}
+      <div className="relative z-10 w-full max-w-5xl">
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
 
-          {/* Slide viewport */}
-          <div className="overflow-hidden rounded-xl">
+          {/* Project info panel */}
+          <motion.div
+            key={project.name}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4 }}
+            className="flex flex-col gap-4"
+          >
+            <span className="text-xs font-semibold text-violet-600 tracking-widest uppercase">
+              featured work
+            </span>
+            <h2 className="font-black text-3xl md:text-4xl text-gray-900 capitalize leading-tight">
+              {project.name}
+            </h2>
+            <p className="text-gray-500 text-sm leading-relaxed max-w-sm">
+              {project.desc}
+            </p>
+
+            {/* Action buttons */}
+            <div className="flex gap-3 mt-2 flex-wrap">
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-gray-900 text-white font-semibold text-sm hover:bg-violet-700 hover:shadow-[0_0_20px_#7c3aed66] transition-all"
+              >
+                Live Demo <ExternalLink size={14} />
+              </a>
+            </div>
+
+            {/* Nav controls */}
+            <div className="flex gap-3 mt-4 items-center">
+              <button
+                onClick={() => goTo(pos - 1)}
+                disabled={pos === 0}
+                className="w-10 h-10 rounded-full border-2 border-gray-200 flex items-center justify-center text-gray-600 hover:border-violet-500 hover:text-violet-600 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              >
+                <ChevronLeft size={18} />
+              </button>
+              <button
+                onClick={() => goTo(pos + 1)}
+                disabled={pos === projects.length - 1}
+                className="w-10 h-10 rounded-full border-2 border-gray-200 flex items-center justify-center text-gray-600 hover:border-violet-500 hover:text-violet-600 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              >
+                <ChevronRight size={18} />
+              </button>
+
+              {/* Dot indicators */}
+              <div className="flex gap-1.5 ml-2">
+                {projects.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => goTo(i)}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      i === pos ? "w-6 bg-violet-600" : "w-1.5 bg-gray-200 hover:bg-gray-400"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Carousel viewport */}
+          <div className="relative overflow-hidden rounded-2xl shadow-xl ring-1 ring-gray-100">
             <motion.div
               animate={{ x: `-${pos * 100}%` }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               className="flex"
               style={{ width: `${projects.length * 100}%` }}
             >
-              {projects.map((project, i) => (
+              {projects.map((p, i) => (
                 <div
                   key={i}
-                  className="group flex-shrink-0 flex flex-col px-4"
+                  className="flex-shrink-0 relative aspect-video group"
                   style={{ width: `${100 / projects.length}%` }}
                 >
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="font-bold text-2xl text-gray-800 capitalize">{project.name}</h3>
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-bold text-white bg-pink-600 rounded-xl px-3 py-1 text-sm flex items-center gap-1 hover:brightness-75 transition"
-                    >
-                      Demo <ExternalLink size={14} />
-                    </a>
-                  </div>
-                  <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-gray-100 shadow-sm group-hover:ring-2 group-hover:ring-violet-500 group-hover:ring-offset-2 transition-all">
-                    <Image
-                      src={project.image}
-                      alt={project.name}
-                      fill
-                      className="object-cover"
-                      sizes="450px"
-                    />
-                  </div>
-                  <p className="font-semibold text-sm text-gray-500 mt-3">{project.desc}</p>
+                  <Image
+                    src={p.image}
+                    alt={p.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="600px"
+                  />
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-950/60 via-transparent to-transparent" />
+                  {/* Hover ring */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 ring-2 ring-violet-500 ring-inset rounded-2xl transition-opacity" />
                 </div>
               ))}
             </motion.div>
-          </div>
-
-          {/* Dot indicators */}
-          <div className="flex justify-center gap-2 mt-4">
-            {projects.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => goTo(i)}
-                className={`w-2 h-2 rounded-full transition-all ${i === pos ? "bg-violet-600 w-4" : "bg-gray-300"}`}
-              />
-            ))}
           </div>
         </div>
       </div>

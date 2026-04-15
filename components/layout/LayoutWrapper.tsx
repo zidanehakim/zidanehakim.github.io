@@ -1,14 +1,8 @@
 "use client"
-import { AnimatePresence, motion } from "framer-motion"
+import { motion } from "framer-motion"
 import { usePathname } from "next/navigation"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useNavStore } from "@/store/useNavStore"
-import { overlayVariants } from "@/lib/motion"
-
-const labelVariants = {
-  hidden:  { opacity: 0, x: -10 },
-  visible: { opacity: 1, x: 0, transition: { delay: 0.1, duration: 0.25 } },
-}
 
 function getLabel(pathname: string) {
   if (pathname === "/") return "home"
@@ -17,47 +11,49 @@ function getLabel(pathname: string) {
 
 export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() ?? "/"
-  const setTransitioning = useNavStore((s) => s.setTransitioning)
-  const hasMounted = useRef(false)
+  const { isTransitioning, setTransitioning } = useNavStore()
+  const [hasMounted, setHasMounted] = useState(false)
+  const [label, setLabel] = useState(getLabel(pathname))
+  const prevPathname = useRef<string | null>(null)
 
   useEffect(() => {
-    hasMounted.current = true
+    setHasMounted(true)
   }, [])
 
   useEffect(() => {
-    if (!hasMounted.current) return  // skip on initial mount
+    // Skip first run — only animate on navigation, not initial load
+    if (prevPathname.current === null) {
+      prevPathname.current = pathname
+      return
+    }
+    prevPathname.current = pathname
+    setLabel(getLabel(pathname))
     setTransitioning(true)
-    const t = setTimeout(() => setTransitioning(false), 350)
+    // Hold overlay for 600ms then slide back up
+    const t = setTimeout(() => setTransitioning(false), 650)
     return () => clearTimeout(t)
   }, [pathname, setTransitioning])
 
   return (
     <>
-      {/* Dark overlay that slides down then up on each navigation — skipped on first load */}
-      {hasMounted.current && (
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`overlay-${pathname}`}
-            variants={overlayVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className="fixed inset-0 bg-gray-950 z-50 flex items-center justify-center pointer-events-none"
+      {/* Overlay slides DOWN to cover content, then slides back UP — skipped on first load */}
+      {hasMounted && (
+        <motion.div
+          animate={{ y: isTransitioning ? "0%" : "-100%" }}
+          transition={{ duration: 0.35, ease: isTransitioning ? "easeIn" : "easeOut" }}
+          initial={{ y: "-100%" }}
+          className="fixed inset-0 bg-gray-950 z-50 flex items-center justify-center pointer-events-none"
+        >
+          <motion.span
+            animate={{ opacity: isTransitioning ? 1 : 0 }}
+            transition={{ duration: 0.2, delay: isTransitioning ? 0.15 : 0 }}
+            className="text-white text-6xl md:text-8xl font-black tracking-tight capitalize select-none"
           >
-            <motion.p
-              variants={labelVariants}
-              initial="hidden"
-              animate="visible"
-              className="text-white text-5xl md:text-7xl font-semibold capitalize"
-              style={{ fontVariant: "small-caps" }}
-            >
-              {getLabel(pathname)}
-            </motion.p>
-          </motion.div>
-        </AnimatePresence>
+            {label}
+          </motion.span>
+        </motion.div>
       )}
 
-      {/* Page content — no AnimatePresence needed here, overlay handles the transition */}
       {children}
     </>
   )
