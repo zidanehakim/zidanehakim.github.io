@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>PRETEXT B Variants</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a0a0a;color:#e5e5e5;padding:24px}
+h2{font-size:1.3em;font-weight:700;color:#fff;margin-bottom:4px}
+.subtitle{color:#777;font-size:0.85em;margin-bottom:24px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.card{background:#111;border:2px solid #222;border-radius:16px;overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s}
+.card:hover{border-color:#7c3aed55;transform:translateY(-3px)}
+.card.selected{border-color:#7c3aed;box-shadow:0 0 24px #7c3aed22}
+.badge{position:absolute;top:10px;right:10px;background:#7c3aed;color:#fff;font-size:0.65em;font-weight:800;padding:2px 8px;border-radius:20px;opacity:0;transition:opacity .2s}
+.card.selected .badge{opacity:1}
+.preview{height:220px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.info{padding:14px 16px}
+.info h3{font-size:0.95em;font-weight:700;color:#fff;margin-bottom:5px}
+.info p{font-size:0.78em;color:#888;line-height:1.5}
+.tags{margin-top:8px;display:flex;flex-wrap:wrap;gap:4px}
+.t{font-size:0.68em;padding:2px 8px;border-radius:20px}
+.tg{background:#1a2f1a;color:#4ade80}
+.tp{background:#1e1030;color:#c084fc}
+.to{background:#2d1e0e;color:#fb923c}
+.tb{background:#0e1e2d;color:#60a5fa}
+
+/* === VARIANT 1: Constellation === */
+.v1{background:radial-gradient(ellipse at 50% 50%, #0d0820 0%, #050508 100%)}
+.v1 canvas{position:absolute;inset:0}
+.v1-core{position:relative;z-index:2;text-align:center}
+.v1-badge{background:linear-gradient(135deg,#7c3aed,#4f46e5);padding:6px 18px;border-radius:30px;font-family:monospace;font-size:0.8em;font-weight:700;color:#fff;display:inline-block;box-shadow:0 0 20px #7c3aed66;letter-spacing:.05em}
+.v1-sub{font-family:monospace;font-size:0.6em;color:#6d6d8a;margin-top:6px}
+
+/* === VARIANT 2: Matrix Rain === */
+.v2{background:#050a05;font-family:'Courier New',monospace;overflow:hidden}
+.rain-col{position:absolute;top:0;font-size:0.65em;line-height:1.4;animation:fall linear infinite;writing-mode:vertical-lr;letter-spacing:2px;opacity:.6}
+@keyframes fall{0%{transform:translateY(-100%)}100%{transform:translateY(110%)}}
+.v2-center{position:relative;z-index:2;background:#111a11cc;border:1px solid #4ade8033;border-radius:12px;padding:12px 20px;backdrop-filter:blur(6px);text-align:center}
+.v2-title{font-family:monospace;font-size:0.75em;color:#4ade80;font-weight:700;letter-spacing:.1em}
+.v2-code{font-family:monospace;font-size:0.6em;color:#86efac;margin-top:4px}
+.v2-val{color:#fff;font-weight:700}
+
+/* === VARIANT 3: Scanner Beam === */
+.v3{background:#060610;overflow:hidden}
+.scanner-text{font-size:2em;font-weight:800;color:#22222e;letter-spacing:-.02em;position:absolute;font-family:'Segoe UI',sans-serif;user-select:none}
+.scanner-beam{position:absolute;width:3px;height:100%;background:linear-gradient(to bottom,transparent,#7c3aed88,#a855f7,#7c3aed88,transparent);animation:scan 3s ease-in-out infinite;box-shadow:0 0 20px #7c3aed,0 0 40px #7c3aed44}
+@keyframes scan{0%,100%{left:0;opacity:.8}50%{left:calc(100% - 3px);opacity:1}}
+.scan-revealed{position:absolute;font-size:2em;font-weight:800;color:#e5e5e5;letter-spacing:-.02em;font-family:'Segoe UI',sans-serif;clip-path:inset(0 80% 0 0);animation:reveal 3s ease-in-out infinite}
+@keyframes reveal{0%{clip-path:inset(0 100% 0 0)}50%{clip-path:inset(0 0% 0 0)}100%{clip-path:inset(0 0% 0 100%)}}
+.scan-data{position:absolute;bottom:18px;left:0;right:0;display:flex;justify-content:center;gap:14px;z-index:2}
+.scan-pill{background:#0d0d20;border:1px solid #7c3aed44;padding:3px 10px;border-radius:20px;font-family:monospace;font-size:0.6em;color:#a78bfa;animation:pulsePill 3s ease-in-out infinite}
+@keyframes pulsePill{0%,100%{opacity:.4}50%{opacity:1}}
+.scan-label{position:absolute;top:16px;right:14px;font-family:monospace;font-size:0.6em;color:#4f46e5;letter-spacing:.08em}
+
+/* === VARIANT 4: Holographic Card === */
+.v4{background:#04040c;display:flex;align-items:center;justify-content:center}
+.holo-card{width:160px;height:110px;border-radius:14px;background:linear-gradient(135deg,#0f0f1a,#1a0f2e);border:1px solid #7c3aed44;position:relative;transform-style:preserve-3d;animation:tilt 6s ease-in-out infinite;box-shadow:0 0 30px #7c3aed22,inset 0 0 30px #7c3aed0a}
+@keyframes tilt{0%,100%{transform:rotateY(-10deg) rotateX(5deg)}50%{transform:rotateY(10deg) rotateX(-5deg)}}
+.holo-sheen{position:absolute;inset:0;border-radius:14px;background:linear-gradient(135deg,transparent 0%,#7c3aed11 40%,#a855f722 50%,transparent 60%);animation:sheen 6s ease-in-out infinite}
+@keyframes sheen{0%,100%{background-position:0% 0%}50%{background-position:100% 100%}}
+.holo-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.holo-logo{font-family:monospace;font-size:0.9em;font-weight:800;color:#fff;letter-spacing:.1em;text-shadow:0 0 10px #7c3aed}
+.holo-sub{font-size:0.5em;color:#7c3aed;margin-top:2px;letter-spacing:.15em}
+.holo-line{width:60%;height:1px;background:linear-gradient(to right,transparent,#7c3aed,transparent);margin:8px auto}
+.holo-stat{font-family:monospace;font-size:0.55em;color:#a78bfa}
+.holo-orbs{position:absolute;inset:-20px}
+.orb{position:absolute;border-radius:50%;border:1px solid #7c3aed22;animation:orb-spin linear infinite}
+@keyframes orb-spin{to{transform:rotate(360deg)}}
+.orb-dot{position:absolute;width:5px;height:5px;background:#7c3aed;border-radius:50%;top:-2.5px;left:50%;margin-left:-2.5px;box-shadow:0 0 6px #7c3aed}
+.ascii-corner{position:absolute;font-family:monospace;font-size:0.5em;color:#4f46e544;line-height:1.2}
+</style>
+</head>
+<body>
+<h2>PRETEXT Section — B Variants</h2>
+<p class="subtitle">All based on the orbital/card direction — each with a different character. Click to select.</p>
+
+<div class="cards">
+
+  <!-- V1: Constellation -->
+  <div class="card" onclick="this.classList.toggle('selected')">
+    <div class="badge">SELECTED</div>
+    <div class="preview v1" id="cv1">
+      <canvas id="c1" width="320" height="220"></canvas>
+      <div class="v1-core">
+        <div class="v1-badge">PRETEXT SDK</div>
+        <div class="v1-sub">real-time layout measurement</div>
+      </div>
+    </div>
+    <div class="info">
+      <h3>B1 — Constellation Graph</h3>
+      <p>Animated node-graph where each node is a layout property (width, height, baseline, kerning). Lines pulse between nodes. PRETEXT badge glows at center. Lottie sparkles on hover.</p>
+      <div class="tags">
+        <span class="t tp">node graph</span>
+        <span class="t tg">ASCII labels</span>
+        <span class="t tb">Lottie sparkle</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- V2: Matrix Rain -->
+  <div class="card" onclick="this.classList.toggle('selected')">
+    <div class="badge">SELECTED</div>
+    <div class="preview v2" id="cv2">
+      <div class="rain-col" style="left:5%;animation-duration:4s;color:#4ade8088">143 32 1.5 18.4 112 24</div>
+      <div class="rain-col" style="left:18%;animation-duration:6s;animation-delay:-2s;color:#22c55e66">px em rem vh vw %</div>
+      <div class="rain-col" style="left:30%;animation-duration:5s;animation-delay:-1s;color:#4ade8055">baseline leading kern</div>
+      <div class="rain-col" style="left:55%;animation-duration:7s;animation-delay:-3s;color:#16a34a55">width height cap-h</div>
+      <div class="rain-col" style="left:72%;animation-duration:4.5s;animation-delay:-.5s;color:#4ade8077">line box inline</div>
+      <div class="rain-col" style="left:88%;animation-duration:5.5s;animation-delay:-2.5s;color:#22c55e55">glyphs font-size</div>
+      <div class="v2-center">
+        <div class="v2-title">PRETEXT</div>
+        <div class="v2-code">measure(<span class="v2-val">"layout"</span>)</div>
+        <div class="v2-code" style="margin-top:3px">→ <span class="v2-val">143px</span> × <span class="v2-val">32px</span></div>
+      </div>
+    </div>
+    <div class="info">
+      <h3>B2 — Matrix Rain of Measurements</h3>
+      <p>Layout values (px, baseline, leading, kerning) rain down matrix-style in green. Center card shows PRETEXT measuring in real-time. Lottie particle cloud around the card.</p>
+      <div class="tags">
+        <span class="t tg">matrix rain</span>
+        <span class="t tg">ASCII values</span>
+        <span class="t tb">Lottie particles</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- V3: Scanner -->
+  <div class="card" onclick="this.classList.toggle('selected')">
+    <div class="badge">SELECTED</div>
+    <div class="preview v3">
+      <div class="scanner-text" style="top:50%;left:50%;transform:translate(-50%,-50%)">PRETEXT</div>
+      <div class="scan-revealed" style="top:50%;left:50%;transform:translate(-50%,-50%)">PRETEXT</div>
+      <div class="scanner-beam"></div>
+      <div class="scan-label">measuring...</div>
+      <div class="scan-data">
+        <span class="scan-pill" style="animation-delay:0s">w: 143px</span>
+        <span class="scan-pill" style="animation-delay:.5s">h: 32px</span>
+        <span class="scan-pill" style="animation-delay:1s">baseline: 18px</span>
+        <span class="scan-pill" style="animation-delay:1.5s">lines: 1</span>
+      </div>
+    </div>
+    <div class="info">
+      <h3>B3 — UV Scanner Reveal</h3>
+      <p>A glowing purple beam scans across text, revealing it and emitting measurement data pills in its wake. Like an X-ray or UV scanner for typography. Lottie scan-burst on loop.</p>
+      <div class="tags">
+        <span class="t tp">scanner beam</span>
+        <span class="t to">measurement pills</span>
+        <span class="t tb">Lottie burst</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- V4: Holographic Card -->
+  <div class="card" onclick="this.classList.toggle('selected')">
+    <div class="badge">SELECTED</div>
+    <div class="preview v4">
+      <div style="position:relative">
+        <div class="holo-orbs">
+          <div class="orb" style="width:200px;height:200px;top:50%;left:50%;margin:-100px;animation-duration:12s">
+            <div class="orb-dot"></div>
+          </div>
+          <div class="orb" style="width:150px;height:150px;top:50%;left:50%;margin:-75px;animation-duration:8s;animation-direction:reverse;border-color:#ec489933">
+            <div class="orb-dot" style="background:#ec4899;box-shadow:0 0 6px #ec4899"></div>
+          </div>
+        </div>
+        <div class="holo-card">
+          <div class="holo-sheen"></div>
+          <div class="holo-text">
+            <div class="holo-logo">PRETEXT</div>
+            <div class="holo-sub">BY CHENG LOU</div>
+            <div class="holo-line"></div>
+            <div class="holo-stat">layout · measure · render</div>
+          </div>
+        </div>
+        <div class="ascii-corner" style="top:-8px;left:-12px">┌──<br>│</div>
+        <div class="ascii-corner" style="bottom:-8px;right:-12px;text-align:right">│<br>──┘</div>
+      </div>
+    </div>
+    <div class="info">
+      <h3>B4 — Holographic SDK Card</h3>
+      <p>A 3D-tilting card with holographic sheen animation, orbiting dots on two axes, and ASCII bracket corners. On hover, card reacts to mouse position (parallax). Lottie shimmer around card.</p>
+      <div class="tags">
+        <span class="t tp">holographic 3D</span>
+        <span class="t tp">orbital rings</span>
+        <span class="t tb">Lottie shimmer</span>
+        <span class="t to">mouse parallax</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="margin-top:20px;padding:12px 16px;background:#111;border-radius:10px;border-left:3px solid #f59e0b">
+  <p style="font-size:0.78em;color:#aaa">You can combine elements — e.g. <strong style="color:#fff">B3 scanner beam + B4 holographic card</strong> in the same section. Let me know what resonates.</p>
+</div>
+
+<script>
+(function(){
+  // Constellation canvas
+  const canvas=document.getElementById('c1');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const W=canvas.width,H=canvas.height;
+  const nodes=[
+    {x:W*.5,y:H*.5,label:'PRETEXT',r:8,core:true},
+    {x:W*.2,y:H*.25,label:'width',r:4},
+    {x:W*.8,y:H*.2,label:'height',r:4},
+    {x:W*.15,y:H*.7,label:'baseline',r:4},
+    {x:W*.82,y:H*.72,label:'leading',r:4},
+    {x:W*.5,y:H*.12,label:'kerning',r:4},
+    {x:W*.5,y:H*.88,label:'lines',r:4},
+  ];
+  let t=0;
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    t+=0.015;
+    // edges
+    nodes.slice(1).forEach(n=>{
+      const pulse=(Math.sin(t*2+n.x*.01)*.5+.5);
+      ctx.beginPath();
+      ctx.moveTo(nodes[0].x,nodes[0].y);
+      ctx.lineTo(n.x,n.y);
+      ctx.strokeStyle=`rgba(124,58,237,${.15+pulse*.25})`;
+      ctx.lineWidth=1;
+      ctx.stroke();
+    });
+    // nodes
+    nodes.forEach((n,i)=>{
+      const pulse=Math.sin(t*1.5+i)*.5+.5;
+      ctx.beginPath();
+      ctx.arc(n.x,n.y,n.core?10:5+pulse*2,0,Math.PI*2);
+      ctx.fillStyle=n.core?'#7c3aed':`rgba(124,58,237,${.4+pulse*.4})`;
+      ctx.fill();
+      if(!n.core){
+        ctx.fillStyle='rgba(167,139,250,.8)';
+        ctx.font='9px monospace';
+        ctx.fillText(n.label,n.x+8,n.y+3);
+      }
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>
