@@ -1,7 +1,6 @@
 "use client"
 import { motion } from "framer-motion"
 import { Mail, Globe, MessageCircle, Phone, MapPin, User } from "lucide-react"
-import { Logo } from "@/components/layout/Logo"
 import { contactInfo } from "@/lib/data"
 
 const contactCards = [
@@ -40,7 +39,6 @@ const infoRows = [
 export function ContactInfo() {
   return (
     <section className="dot-grid relative w-screen min-h-screen bg-white overflow-hidden flex flex-col items-center justify-center px-6 md:px-16 pt-24 pb-16">
-      <Logo />
 
       {/* Rotated availability badge — hidden on small screens to avoid overlap */}
       <div className="absolute top-24 right-6 md:right-14 rotate-[8deg] z-10 pointer-events-none select-none hidden sm:block">

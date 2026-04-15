@@ -2,7 +2,6 @@
 import { useRef } from "react"
 import Image from "next/image"
 import { motion, useInView } from "framer-motion"
-import { Logo } from "@/components/layout/Logo"
 
 const photos = Array.from({ length: 11 }, (_, i) => `/images/${i + 1}.jpg`)
 
@@ -15,7 +14,6 @@ export function AboutIntro() {
 
   return (
     <section className="dot-grid relative w-screen bg-white overflow-hidden px-6 md:px-16 pt-24 pb-20">
-      <Logo />
 
       {/* Left sidebar — vertical label */}
       <div className="absolute left-4 top-1/2 -translate-y-1/2 hidden md:flex flex-col items-center gap-3 z-10">

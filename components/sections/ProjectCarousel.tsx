@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react"
 import { projects } from "@/lib/data"
-import { Logo } from "@/components/layout/Logo"
 
 // Slide variants — direction-aware enter/exit
 const slideVariants = {
@@ -74,8 +73,6 @@ export function ProjectCarousel() {
 
   return (
     <section className="dot-grid relative w-screen min-h-screen bg-white overflow-hidden flex flex-col items-center justify-center px-4 sm:px-6 md:px-16 pb-[10vh] pt-24">
-      <Logo />
-
       {/* Ghost text — CSS animation, no JS thread */}
       <span
         aria-hidden
