@@ -13,6 +13,23 @@ export function AboutIntro() {
     <section className="dot-grid relative w-screen bg-white overflow-hidden px-6 md:px-16 pt-24 pb-20">
       <Logo />
 
+      {/* Left sidebar — vertical label */}
+      <div className="absolute left-4 top-1/2 -translate-y-1/2 hidden md:flex flex-col items-center gap-3 z-10">
+        <div className="w-px h-12 bg-gray-200" />
+        <p
+          className="text-[9px] font-mono text-gray-400 tracking-[0.28em] uppercase select-none"
+          style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+        >
+          ABOUT ME
+        </p>
+        <div className="w-px h-12 bg-gray-200" />
+      </div>
+
+      {/* Section counter top-right */}
+      <div className="absolute top-6 right-6 hidden md:flex items-center gap-2 z-10">
+        <span className="text-[9px] font-mono text-gray-300 tracking-widest select-none">[ 02 / 04 ]</span>
+      </div>
+
       {/* Ghost background text */}
       <motion.span
         aria-hidden
@@ -54,7 +71,7 @@ export function AboutIntro() {
             </p>
 
             {/* Stats */}
-            <div className="flex flex-wrap gap-4 mt-2">
+            <div className="flex flex-wrap gap-4 mt-2 relative">
               {[
                 { value: "NTU", label: "Civil Eng" },
                 { value: "4+", label: "Years Coding" },
@@ -68,6 +85,13 @@ export function AboutIntro() {
                   <span className="text-xs text-gray-500 font-medium mt-0.5">{label}</span>
                 </div>
               ))}
+              {/* Asymmetric annotation */}
+              <span
+                className="absolute -top-4 -right-2 text-[9px] font-mono text-gray-300 tracking-widest select-none pointer-events-none"
+                style={{ transform: "rotate(-6deg)" }}
+              >
+                // since 2020
+              </span>
             </div>
           </motion.div>
 
@@ -98,6 +122,7 @@ export function AboutIntro() {
           <div className="flex items-center gap-3 mb-6">
             <p className="text-xs text-gray-400 font-medium tracking-widest uppercase">moments</p>
             <div className="flex-1 h-px bg-gray-100" />
+            <span className="text-[10px] font-mono text-gray-300 tracking-wider whitespace-nowrap">11 captures</span>
           </div>
 
           {/* Polaroid grid using CSS columns */}

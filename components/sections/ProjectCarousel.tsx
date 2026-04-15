@@ -35,6 +35,36 @@ export function ProjectCarousel() {
         projects.
       </motion.span>
 
+      {/* Huge faded project index — changes per slide */}
+      <motion.span
+        key={pos}
+        aria-hidden
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.04 }}
+        transition={{ duration: 0.5 }}
+        className="pointer-events-none absolute select-none font-black text-gray-900 leading-none bottom-0 right-0"
+        style={{ fontSize: "clamp(6rem, 22vw, 18rem)" }}
+      >
+        {String(pos + 1).padStart(2, "0")}
+      </motion.span>
+
+      {/* Left edge — vertical label */}
+      <div className="absolute left-4 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-3 z-10">
+        <div className="w-px h-12 bg-gray-200" />
+        <p
+          className="text-[9px] font-mono text-gray-400 tracking-[0.28em] uppercase select-none"
+          style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+        >
+          SELECTED WORKS
+        </p>
+        <div className="w-px h-12 bg-gray-200" />
+      </div>
+
+      {/* Top-right section counter */}
+      <div className="absolute top-6 right-6 hidden md:flex items-center gap-2 z-10">
+        <span className="text-[9px] font-mono text-gray-300 tracking-widest select-none">[ 03 / 04 ]</span>
+      </div>
+
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -127,6 +157,12 @@ export function ProjectCarousel() {
 
           {/* Carousel viewport */}
           <div className="relative overflow-hidden rounded-2xl shadow-xl ring-1 ring-gray-100">
+            {/* Rotated featured tag */}
+            <div className="absolute top-3 left-3 z-20 rotate-[-6deg] select-none pointer-events-none">
+              <span className="bg-violet-600/80 backdrop-blur-sm text-white font-mono font-bold text-[9px] tracking-[0.2em] px-2 py-0.5 rounded uppercase">
+                FEATURED
+              </span>
+            </div>
             <motion.div
               animate={{ x: `-${pos * 100}%` }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}

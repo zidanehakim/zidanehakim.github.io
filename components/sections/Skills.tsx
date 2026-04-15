@@ -69,6 +69,27 @@ export function Skills() {
         skills.
       </motion.span>
 
+      {/* Giant section number — bottom right, offset behind content */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute select-none font-black text-gray-900 opacity-[0.025] leading-none bottom-0 right-0"
+        style={{ fontSize: "clamp(7rem, 24vw, 20rem)" }}
+      >
+        02
+      </span>
+
+      {/* Left sidebar */}
+      <div className="absolute left-4 top-1/2 -translate-y-1/2 hidden md:flex flex-col items-center gap-3 z-10">
+        <div className="w-px h-12 bg-gray-200" />
+        <p
+          className="text-[9px] font-mono text-gray-400 tracking-[0.28em] uppercase select-none"
+          style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+        >
+          TECH STACK
+        </p>
+        <div className="w-px h-12 bg-gray-200" />
+      </div>
+
       <div className="relative z-10 w-full max-w-4xl mx-auto">
 
         {/* Header */}

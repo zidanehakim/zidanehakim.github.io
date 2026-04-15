@@ -96,6 +96,42 @@ export function Hero() {
 
   return (
     <section className="dot-grid relative w-screen h-screen bg-white overflow-hidden flex items-center justify-center">
+
+      {/* ── Asymmetric edge decorations ── */}
+
+      {/* Left sidebar — vertical label */}
+      <div className="absolute left-4 top-1/2 -translate-y-1/2 hidden md:flex flex-col items-center gap-3 z-10">
+        <div className="w-px h-16 bg-gray-200" />
+        <p
+          className="text-[9px] font-mono text-gray-400 tracking-[0.28em] uppercase select-none"
+          style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+        >
+          PORTFOLIO · 2025
+        </p>
+        <div className="w-px h-16 bg-gray-200" />
+      </div>
+
+      {/* Top-right section counter */}
+      <div className="absolute top-6 right-6 hidden md:flex items-center gap-2 z-10">
+        <span className="text-[9px] font-mono text-gray-300 tracking-widest select-none">[ 01 / 04 ]</span>
+      </div>
+
+      {/* Bottom-left — live location */}
+      <div className="absolute bottom-6 left-6 hidden md:flex items-center gap-2 z-10">
+        <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse inline-block" />
+        <span className="text-[9px] font-mono text-gray-400 tracking-widest select-none">TAIPEI · TW</span>
+      </div>
+
+      {/* Bottom-center — scroll indicator */}
+      <motion.div
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-1.5 z-10"
+        animate={{ y: [0, 5, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <span className="text-[9px] font-mono text-gray-400 tracking-widest select-none">scroll</span>
+        <div className="w-px h-5 bg-gradient-to-b from-gray-300 to-transparent" />
+      </motion.div>
+
       {/* Ghost name — animated background text */}
       <motion.h1
         aria-hidden

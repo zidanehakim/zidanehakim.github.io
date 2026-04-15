@@ -130,11 +130,31 @@ export function Timeline() {
         />
       </div>
 
+      {/* Left sidebar */}
+      <div className="absolute left-4 top-1/2 -translate-y-1/2 hidden md:flex flex-col items-center gap-3 z-10">
+        <div className="w-px h-12 bg-violet-900/40" />
+        <p
+          className="text-[9px] font-mono text-violet-900/60 tracking-[0.28em] uppercase select-none"
+          style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+        >
+          LIFE LOG
+        </p>
+        <div className="w-px h-12 bg-violet-900/40" />
+      </div>
+
       {/* Entries */}
       <div className="relative" style={{ height: `${totalHeight}em` }}>
         {timeline.map((obj, i) => (
           <TimelineEntry key={i} obj={obj} index={i} />
         ))}
+      </div>
+
+      {/* End of record */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none">
+        <div className="w-px h-6 bg-violet-900/40" />
+        <p className="font-mono text-[9px] text-gray-700 tracking-[0.2em] uppercase select-none">
+          [ END OF RECORD ]
+        </p>
       </div>
     </section>
   )

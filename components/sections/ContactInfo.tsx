@@ -42,6 +42,24 @@ export function ContactInfo() {
     <section className="dot-grid relative w-screen min-h-screen bg-white overflow-hidden flex flex-col items-center justify-center px-6 md:px-16 pt-24 pb-16">
       <Logo />
 
+      {/* Rotated availability badge */}
+      <div className="absolute top-24 right-6 md:right-14 rotate-[8deg] z-10 pointer-events-none select-none">
+        <div className="flex items-center gap-2 border-2 border-green-500/60 text-green-600 font-bold font-mono text-[10px] px-3 py-1.5 rounded tracking-[0.18em] uppercase">
+          <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse inline-block" />
+          OPEN · TO · WORK
+        </div>
+      </div>
+
+      {/* Bottom-right — timezone */}
+      <div className="absolute bottom-6 right-6 hidden md:flex items-center gap-2 z-10">
+        <span className="text-[9px] font-mono text-gray-400 tracking-widest select-none">UTC+8 · TAIPEI</span>
+      </div>
+
+      {/* Section counter */}
+      <div className="absolute top-6 left-6 hidden md:flex items-center gap-2 z-10">
+        <span className="text-[9px] font-mono text-gray-300 tracking-widest select-none">[ 04 / 04 ]</span>
+      </div>
+
       {/* Ghost background text */}
       <motion.span
         aria-hidden

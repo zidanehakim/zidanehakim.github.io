@@ -165,6 +165,19 @@ export function IdentityShowcase() {
         {"│\n──┘"}
       </span>
 
+      {/* System status — top right */}
+      <div className="absolute top-4 right-10 flex items-center gap-1.5 pointer-events-none z-10">
+        <span className="w-1.5 h-1.5 rounded-full bg-green-500/60 animate-pulse" />
+        <span className="font-mono text-[9px] text-[#2a2a50] tracking-widest">SYS:ONLINE</span>
+      </div>
+
+      {/* Coordinates — bottom left */}
+      <div className="absolute bottom-4 left-10 pointer-events-none z-10">
+        <span className="font-mono text-[9px] text-[#1e1e3a] tracking-wider">
+          25.0174°N / 121.5370°E
+        </span>
+      </div>
+
       {/* Center content */}
       <div className="relative z-10 flex flex-col items-center gap-4 pointer-events-none">
         {/* Scanner name */}
@@ -209,6 +222,27 @@ export function IdentityShowcase() {
           >
             full-stack engineer · ntu · taiwan
           </p>
+        )}
+
+        {/* Terminal data block — appears after scan completes */}
+        {scanning && (
+          <div
+            key={`data-${scanning}`}
+            className="flex flex-col items-center gap-0.5 mt-1 animate-fade-in"
+            style={{ animationDelay: "2.8s", animationFillMode: "both" }}
+          >
+            <p className="font-mono text-[9px] text-[#1e1e40] tracking-widest">
+              ─────────────────────────────
+            </p>
+            <div className="flex gap-6">
+              <p className="font-mono text-[9px] tracking-wider text-[#2e2e5a]">
+                ID: <span className="text-violet-500/70">YH-2025</span>
+              </p>
+              <p className="font-mono text-[9px] tracking-wider text-[#2e2e5a]">
+                STATUS: <span className="text-green-500/70">VERIFIED</span>
+              </p>
+            </div>
+          </div>
         )}
       </div>
     </section>
