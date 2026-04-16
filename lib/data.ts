@@ -86,16 +86,34 @@ export const ai = ["langchain", "crewai"];
 // Projects
 export const projects = [
   {
+    name: "talksphere",
+    desc: "A real-time voice chat application with a sleek, modern design. Built with React, Node.js, and WebSocket for seamless communication. Features include user authentication, multiple chat rooms, and responsive design for both desktop and mobile.",
+    url: "https://talksphere-2a8smnur2-zidanehakims-projects.vercel.app/",
+    image: "/projects/web_talksphere.png",
+  },
+  {
+    name: "chitchat",
+    desc: "A real-time chat application with a sleek, modern design. Built with React, Node.js, and WebSocket for seamless communication. Features include user authentication, multiple chat rooms, and responsive design for both desktop and mobile.",
+    url: "https://chitchat-three-rho.vercel.app/",
+    image: "/projects/web_chitchat.png",
+  },
+  {
     name: "noteify",
     desc: "Design your planner with drag-and-drop sticky notes, featuring weather forecasts, real-time clocks, and location tracking. Easily create, stick, and track tasks.",
     url: "https://noteify-io.netlify.app/",
     image: "/projects/web_noteify.png",
   },
   {
+    name: "trashtalker",
+    desc: "An AI-powered waste sorting assistant that helps users identify and sort their trash correctly. Simply take a photo of your waste, and Trashtalker will analyze it using computer vision and provide instant feedback on the appropriate disposal method.",
+    url: "https://trashtalker.com/",
+    image: "/projects/web_trashtalker.png",
+  },
+  {
     name: "instrument store",
     desc: "Welcome to our online instrument store, where cozy ambiance meets jazzy design. Search for your desired instruments now and begin your musical journey!",
     url: "https://zidanehakim.github.io/react-instrument-store",
-    image: "/projects/web_instrument-store.png",
+    image: "/projects/web_instrument_store.png",
   },
   {
     name: "animalist",
