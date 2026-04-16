@@ -1,13 +1,22 @@
-"use client"
-import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
-import Image from "next/image"
-import { frontEnd, backEnd } from "@/lib/data"
-import { containerVariants, itemVariants } from "@/lib/motion"
+"use client";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import Image from "next/image";
+import {
+  frontEnd,
+  backEnd,
+  languages,
+  databases,
+  cloudDevops,
+  observability,
+  testing,
+  ai,
+} from "@/lib/data";
+import { containerVariants, itemVariants } from "@/lib/motion";
 
 function SkillGrid({ skills, title }: { skills: string[]; title: string }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: "-10%" })
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-10%" });
 
   return (
     <div>
@@ -38,11 +47,12 @@ function SkillGrid({ skills, title }: { skills: string[]; title: string }) {
               <div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"
                 style={{
-                  background: "linear-gradient(135deg, rgba(124,58,237,0.18) 0%, rgba(59,130,246,0.14) 40%, rgba(167,139,250,0.18) 80%, rgba(236,72,153,0.10) 100%)",
+                  background:
+                    "linear-gradient(135deg, rgba(124,58,237,0.18) 0%, rgba(59,130,246,0.14) 40%, rgba(167,139,250,0.18) 80%, rgba(236,72,153,0.10) 100%)",
                 }}
               />
               <Image
-                src={`/${slug}.svg`}
+                src={`/skills/${slug}.svg`}
                 alt={slug}
                 width={36}
                 height={36}
@@ -56,16 +66,15 @@ function SkillGrid({ skills, title }: { skills: string[]; title: string }) {
         ))}
       </motion.div>
     </div>
-  )
+  );
 }
 
 export function Skills() {
-  const headerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(headerRef, { once: true })
+  const headerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(headerRef, { once: true });
 
   return (
     <section className="dot-grid relative w-full bg-white overflow-hidden px-6 sm:px-8 md:px-16 py-24">
-
       {/* Ghost background text — CSS animation, no JS thread */}
       <span
         aria-hidden
@@ -73,15 +82,6 @@ export function Skills() {
         style={{ left: "50%" }}
       >
         skills.
-      </span>
-
-      {/* Giant section number — bottom right, offset behind content */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute select-none font-black text-gray-900 opacity-[0.025] leading-none bottom-0 right-0"
-        style={{ fontSize: "clamp(7rem, 24vw, 20rem)" }}
-      >
-        02
       </span>
 
       {/* Left sidebar */}
@@ -97,7 +97,6 @@ export function Skills() {
       </div>
 
       <div className="relative z-10 w-full max-w-4xl mx-auto">
-
         {/* Header */}
         <motion.div
           ref={headerRef}
@@ -119,10 +118,16 @@ export function Skills() {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="flex flex-col gap-12"
         >
+          <SkillGrid skills={languages} title="Languages" />
           <SkillGrid skills={frontEnd} title="Front-end" />
           <SkillGrid skills={backEnd} title="Back-end" />
+          <SkillGrid skills={cloudDevops} title="Cloud & DevOps" />
+          <SkillGrid skills={databases} title="Databases" />
+          <SkillGrid skills={observability} title="Observability" />
+          <SkillGrid skills={testing} title="Testing" />
+          <SkillGrid skills={ai} title="AI" />
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

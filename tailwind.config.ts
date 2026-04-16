@@ -1,15 +1,15 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    './src/app/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './lib/**/*.{ts,tsx}',
+    "./src/app/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./lib/**/*.{ts,tsx}",
   ],
   theme: {
     extend: {
       colors: {
-        accent: '#7c3aed',
+        accent: "#7c3aed",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -44,14 +44,14 @@ const config: Config = {
         sans: ["var(--font-sans)", "sans-serif"],
       },
       backgroundImage: {
-        'dot-grid': 'radial-gradient(circle, #d1d5db 1px, transparent 1px)',
+        "dot-grid": "radial-gradient(circle, #d1d5db 1px, transparent 1px)",
       },
       backgroundSize: {
-        'dot-grid': '20px 20px',
+        "dot-grid": "20px 20px",
       },
     },
   },
   plugins: [],
-}
+};
 
-export default config
+export default config;

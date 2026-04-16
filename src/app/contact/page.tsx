@@ -1,5 +1,5 @@
-import { ContactInfo } from "@/components/sections/ContactInfo"
+import { ContactInfo } from "@/components/sections/ContactInfo";
 
 export default function Contact() {
-  return <ContactInfo />
+  return <ContactInfo />;
 }

@@ -1,7 +1,7 @@
-"use client"
-import { motion } from "framer-motion"
-import { Mail, Globe, MessageCircle, Phone, MapPin, User } from "lucide-react"
-import { contactInfo } from "@/lib/data"
+"use client";
+import { motion } from "framer-motion";
+import { Mail, Globe, MessageCircle, Phone, MapPin, User } from "lucide-react";
+import { contactInfo } from "@/lib/data";
 
 const contactCards = [
   {
@@ -28,18 +28,17 @@ const contactCards = [
     value: contactInfo.line,
     href: `https://line.me/ti/p/${contactInfo.line}`,
   },
-]
+];
 
 const infoRows = [
-  { icon: User,    label: "Name",    value: contactInfo.name },
-  { icon: MapPin,  label: "Address", value: contactInfo.address },
-  { icon: Phone,   label: "Mobile",  value: contactInfo.phone },
-]
+  { icon: User, label: "Name", value: contactInfo.name },
+  { icon: MapPin, label: "Address", value: contactInfo.address },
+  { icon: Phone, label: "Mobile", value: contactInfo.phone },
+];
 
 export function ContactInfo() {
   return (
     <section className="dot-grid relative w-screen min-h-screen bg-white overflow-hidden flex flex-col items-center justify-center px-6 md:px-16 pt-24 pb-16">
-
       {/* Rotated availability badge — hidden on small screens to avoid overlap */}
       <div className="absolute top-24 right-6 md:right-14 rotate-[8deg] z-10 pointer-events-none select-none hidden sm:block">
         <div className="flex items-center gap-2 border-2 border-green-500/60 text-green-600 font-bold font-mono text-[10px] px-3 py-1.5 rounded tracking-[0.18em] uppercase">
@@ -48,14 +47,11 @@ export function ContactInfo() {
         </div>
       </div>
 
-      {/* Bottom-right — timezone */}
-      <div className="absolute bottom-6 right-6 hidden md:flex items-center gap-2 z-10">
-        <span className="text-[9px] font-mono text-gray-400 tracking-widest select-none">UTC+8 · TAIPEI</span>
-      </div>
-
       {/* Section counter */}
       <div className="absolute top-6 left-6 hidden md:flex items-center gap-2 z-10">
-        <span className="text-[9px] font-mono text-gray-300 tracking-widest select-none">[ 04 / 04 ]</span>
+        <span className="text-[9px] font-mono text-gray-300 tracking-widest select-none">
+          [ 04 / 04 ]
+        </span>
       </div>
 
       {/* Ghost background text — CSS animation, no JS thread */}
@@ -69,7 +65,6 @@ export function ContactInfo() {
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-4xl mx-auto">
-
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -77,19 +72,19 @@ export function ContactInfo() {
           transition={{ duration: 0.6 }}
           className="mb-10"
         >
-          <p className="text-gray-500 text-sm font-medium tracking-widest uppercase mb-3">get in touch</p>
+          <p className="text-gray-500 text-sm font-medium tracking-widest uppercase mb-3">
+            get in touch
+          </p>
           <h1 className="font-black text-5xl text-gray-900">
-            Say{" "}
-            <span className="text-violet-600">Hello</span>
+            Say <span className="text-violet-600">Hello</span>
           </h1>
           <p className="text-gray-500 text-sm mt-3 max-w-md leading-relaxed">
-            I&apos;m open to collaborations, internships, and interesting projects.
-            Don&apos;t hesitate to reach out!
+            I'm open to work, collaborations, and interesting projects. Don't
+            hesitate to reach out!
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8 items-start">
-
           {/* Left — info rows */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -106,8 +101,12 @@ export function ContactInfo() {
                   <Icon size={16} className="text-violet-600" />
                 </div>
                 <div>
-                  <p className="text-xs text-gray-400 font-semibold tracking-widest uppercase">{label}</p>
-                  <p className="text-sm text-gray-800 font-semibold mt-0.5">{value}</p>
+                  <p className="text-xs text-gray-400 font-semibold tracking-widest uppercase">
+                    {label}
+                  </p>
+                  <p className="text-sm text-gray-800 font-semibold mt-0.5">
+                    {value}
+                  </p>
                 </div>
               </div>
             ))}
@@ -132,10 +131,15 @@ export function ContactInfo() {
                 className="group flex flex-col gap-3 p-4 rounded-2xl bg-white border border-gray-100 shadow-sm hover:border-violet-300 hover:shadow-[0_0_20px_#7c3aed22] transition-all cursor-pointer"
               >
                 <div className="w-10 h-10 rounded-xl bg-gray-50 group-hover:bg-violet-50 flex items-center justify-center transition-colors">
-                  <Icon size={18} className="text-gray-400 group-hover:text-violet-600 transition-colors" />
+                  <Icon
+                    size={18}
+                    className="text-gray-400 group-hover:text-violet-600 transition-colors"
+                  />
                 </div>
                 <div>
-                  <p className="text-xs text-gray-400 font-semibold tracking-widest uppercase">{label}</p>
+                  <p className="text-xs text-gray-400 font-semibold tracking-widest uppercase">
+                    {label}
+                  </p>
                   <p className="text-sm text-gray-700 font-semibold mt-0.5 truncate group-hover:text-violet-600 transition-colors">
                     {value}
                   </p>
@@ -146,5 +150,5 @@ export function ContactInfo() {
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -9,8 +9,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d out"
+    "deploy": "next build && gh-pages -d out -b gh-pages -t"
   },
   "dependencies": {
     "framer-motion": "^11.18.2",
@@ -29,7 +28,7 @@
     "autoprefixer": "^10.4.17",
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "gh-pages": "^6.1.1",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.2.2"

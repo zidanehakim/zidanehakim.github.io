@@ -1,18 +1,27 @@
-'use client'
+"use client";
 
-import { useRef } from "react"
-import { motion, useScroll, useTransform, useInView } from "framer-motion"
-import { timeline } from "@/lib/data"
+import { useRef } from "react";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { timeline } from "@/lib/data";
 
-function TimelineEntry({ obj, index }: { obj: typeof timeline[0]; index: number }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: "-15% 0px" })
-  const isOdd = (index + 1) % 2 !== 0
+function TimelineEntry({
+  obj,
+  index,
+}: {
+  obj: (typeof timeline)[0];
+  index: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, {
+    once: false,
+    margin: "10000px 0px -15% 0px",
+  });
+  const isOdd = (index + 1) % 2 !== 0;
 
   const badgeClass =
     obj.type === "Education"
       ? "bg-violet-900/60 text-violet-300 border border-violet-700/40"
-      : "bg-amber-900/50 text-amber-300 border border-amber-700/40"
+      : "bg-amber-900/50 text-amber-300 border border-amber-700/40";
 
   return (
     <div
@@ -20,20 +29,28 @@ function TimelineEntry({ obj, index }: { obj: typeof timeline[0]; index: number 
       className="absolute w-full"
       style={{ top: `${index * 22 + 10}em` }}
     >
-      {/* Center dot */}
-      <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-        transition={{ duration: 0.4, type: "spring", stiffness: 300 }}
-        className="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-violet-500 border-[3px] border-gray-900 z-20 shadow-[0_0_12px_#7c3aed88]"
-      />
-      {/* Dot base */}
-      <div className="w-4 h-4 rounded-full absolute left-1/2 -translate-x-1/2 bg-gray-800 z-10" />
+      {/* Positioning Wrapper: Protects Tailwind transforms from Framer Motion */}
+      <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 z-20">
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={
+            isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }
+          }
+          transition={{ duration: 0.4, type: "spring", stiffness: 300 }}
+          // Removed positioning classes from here
+          className="w-4 h-4 rounded-full bg-violet-500 border-[3px] border-gray-900 shadow-[0_0_12px_#7c3aed88]"
+        />
+      </div>
+
+      {/* Dot base: Added -translate-y-1/2 for perfect vertical alignment */}
+      <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-gray-800 z-10" />
 
       {/* Card + connector */}
       <motion.div
         initial={{ opacity: 0, x: isOdd ? -16 : 16 }}
-        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isOdd ? -16 : 16 }}
+        animate={
+          isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isOdd ? -16 : 16 }
+        }
         transition={{ duration: 0.5, delay: 0.1 }}
         className={`absolute flex items-start ${isOdd ? "right-1/2" : "left-1/2"}`}
       >
@@ -48,15 +65,27 @@ function TimelineEntry({ obj, index }: { obj: typeof timeline[0]; index: number 
             ${isOdd ? "text-end" : "text-start"}
             lg:w-[22em] md:w-[29vw] sm:w-[36vw] w-[42vw] p-3 md:p-4`}
         >
-          <div className={`flex mb-2 ${isOdd ? "justify-end" : "justify-start"}`}>
-            <span className={`text-xs font-bold rounded-lg py-0.5 px-3 ${badgeClass}`}>
+          <div
+            className={`flex mb-2 ${isOdd ? "justify-end" : "justify-start"}`}
+          >
+            <span
+              className={`text-xs font-bold rounded-lg py-0.5 px-3 ${badgeClass}`}
+            >
               {obj.type}
             </span>
           </div>
-          <h2 className="font-black text-xl text-white leading-tight mb-1">{obj.time}</h2>
-          <h3 className="font-semibold text-sm text-gray-200 mb-1">{obj.title}</h3>
-          <p className="text-xs text-violet-300/70 font-medium mb-2">{obj.sub}</p>
-          <p className="text-xs text-gray-400 leading-relaxed">{obj.description}</p>
+          <h2 className="font-black text-xl text-white leading-tight mb-1">
+            {obj.time}
+          </h2>
+          <h3 className="font-semibold text-sm text-gray-200 mb-1">
+            {obj.title}
+          </h3>
+          <p className="text-xs text-violet-300/70 font-medium mb-2">
+            {obj.sub}
+          </p>
+          <p className="text-xs text-gray-400 leading-relaxed">
+            {obj.description}
+          </p>
         </div>
 
         {/* Connector line (left side) */}
@@ -65,17 +94,17 @@ function TimelineEntry({ obj, index }: { obj: typeof timeline[0]; index: number 
         )}
       </motion.div>
     </div>
-  )
+  );
 }
 
 export function Timeline() {
-  const sectionRef = useRef<HTMLElement>(null)
+  const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start center", "end center"],
-  })
-  const trackHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
-  const totalHeight = timeline.length * 22 + 6
+  });
+  const trackHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const totalHeight = timeline.length * 22 + 6;
 
   return (
     <section
@@ -84,14 +113,16 @@ export function Timeline() {
       style={{
         paddingTop: "10em",
         paddingBottom: "10em",
-        background: "linear-gradient(180deg, #0a0a14 0%, #111120 50%, #0a0a14 100%)",
+        background:
+          "linear-gradient(180deg, #0a0a14 0%, #111120 50%, #0a0a14 100%)",
       }}
     >
       {/* Subtle grid overlay */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
-          backgroundImage: "radial-gradient(circle, #7c3aed 1px, transparent 1px)",
+          backgroundImage:
+            "radial-gradient(circle, #7c3aed 1px, transparent 1px)",
           backgroundSize: "32px 32px",
         }}
       />
@@ -107,9 +138,13 @@ export function Timeline() {
 
       {/* Header */}
       <div className="absolute md:left-[53%] left-1/2 -translate-x-1/2 md:translate-x-0 top-10 flex flex-col gap-1">
-        <p className="text-xs text-violet-400/60 font-mono tracking-widest uppercase">journey</p>
+        <p className="text-xs text-violet-400/60 font-mono tracking-widest uppercase">
+          journey
+        </p>
         <h1 className="font-black text-5xl text-white">timeline.</h1>
-        <p className="text-gray-500 font-semibold text-sm mt-1">My life so far</p>
+        <p className="text-gray-500 font-semibold text-sm mt-1">
+          My life so far
+        </p>
       </div>
 
       {/* Center track — background */}
@@ -142,7 +177,10 @@ export function Timeline() {
       </div>
 
       {/* Entries */}
-      <div className="relative overflow-x-clip" style={{ height: `${totalHeight}em` }}>
+      <div
+        className="relative overflow-x-clip"
+        style={{ height: `${totalHeight}em` }}
+      >
         {timeline.map((obj, i) => (
           <TimelineEntry key={i} obj={obj} index={i} />
         ))}
@@ -156,5 +194,5 @@ export function Timeline() {
         </p>
       </div>
     </section>
-  )
+  );
 }

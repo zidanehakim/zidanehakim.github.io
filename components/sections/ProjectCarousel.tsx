@@ -1,9 +1,9 @@
-"use client"
-import { useState, useCallback, useEffect, useRef } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import Image from "next/image"
-import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react"
-import { projects } from "@/lib/data"
+"use client";
+import { useState, useCallback, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
+import { projects } from "@/lib/data";
 
 // Slide variants — direction-aware enter/exit
 const slideVariants = {
@@ -24,56 +24,63 @@ const slideVariants = {
     scale: 0.96,
     transition: { duration: 0.35, ease: [0.55, 0, 1, 0.45] },
   }),
-}
+};
 
 const infoVariants = {
   enter: (dir: number) => ({ opacity: 0, y: dir > 0 ? 18 : -18 }),
   center: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" } },
-  exit:   (dir: number) => ({ opacity: 0, y: dir > 0 ? -18 : 18, transition: { duration: 0.25 } }),
-}
+  exit: (dir: number) => ({
+    opacity: 0,
+    y: dir > 0 ? -18 : 18,
+    transition: { duration: 0.25 },
+  }),
+};
 
 export function ProjectCarousel() {
-  const [pos, setPos] = useState(0)
-  const [dir, setDir] = useState(1)
-  const dragged = useRef(false)
-  const dragStartX = useRef(0)
+  const [pos, setPos] = useState(0);
+  const [dir, setDir] = useState(1);
+  const dragged = useRef(false);
+  const dragStartX = useRef(0);
 
-  const goTo = useCallback((idx: number) => {
-    if (idx < 0 || idx >= projects.length) return
-    setDir(idx > pos ? 1 : -1)
-    setPos(idx)
-  }, [pos])
+  const goTo = useCallback(
+    (idx: number) => {
+      if (idx < 0 || idx >= projects.length) return;
+      setDir(idx > pos ? 1 : -1);
+      setPos(idx);
+    },
+    [pos],
+  );
 
   // Keyboard navigation
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") goTo(pos + 1)
-      if (e.key === "ArrowLeft")  goTo(pos - 1)
-    }
-    window.addEventListener("keydown", onKey)
-    return () => window.removeEventListener("keydown", onKey)
-  }, [pos, goTo])
+      if (e.key === "ArrowRight") goTo(pos + 1);
+      if (e.key === "ArrowLeft") goTo(pos - 1);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [pos, goTo]);
 
   // Touch / mouse drag handlers
   const onPointerDown = (e: React.PointerEvent) => {
-    dragStartX.current = e.clientX
-    dragged.current = false
-  }
+    dragStartX.current = e.clientX;
+    dragged.current = false;
+  };
   const onPointerMove = (e: React.PointerEvent) => {
-    if (Math.abs(e.clientX - dragStartX.current) > 8) dragged.current = true
-  }
+    if (Math.abs(e.clientX - dragStartX.current) > 8) dragged.current = true;
+  };
   const onPointerUp = (e: React.PointerEvent) => {
-    const delta = e.clientX - dragStartX.current
+    const delta = e.clientX - dragStartX.current;
     if (Math.abs(delta) > 50) {
-      delta < 0 ? goTo(pos + 1) : goTo(pos - 1)
+      delta < 0 ? goTo(pos + 1) : goTo(pos - 1);
     }
-  }
+  };
 
-  const project = projects[pos]
+  const project = projects[pos];
 
   return (
-    <section className="dot-grid relative w-screen min-h-screen bg-white overflow-hidden flex flex-col items-center justify-center px-4 sm:px-6 md:px-16 pb-[10vh] pt-24">
-      {/* Ghost text — CSS animation, no JS thread */}
+    <section className="dot-grid relative w-screen min-h-screen bg-white overflow-hidden flex flex-col items-center justify-center px-4 sm:px-6 md:px-6 pb-24 pt-24">
+      {/* Ghost text CSS animation, no JS thread */}
       <span
         aria-hidden
         className="ghost-drift-lr pointer-events-none absolute select-none text-[16vw] font-black text-gray-900 opacity-[0.04] whitespace-nowrap top-1/3"
@@ -91,7 +98,7 @@ export function ProjectCarousel() {
           animate={{ opacity: 0.04, y: 0 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
-          className="pointer-events-none absolute select-none font-black text-gray-900 leading-none bottom-0 right-0"
+          className="pointer-events-none absolute select-none font-black text-gray-900 leading-none bottom-5 right-5"
           style={{ fontSize: "clamp(6rem, 22vw, 18rem)" }}
         >
           {String(pos + 1).padStart(2, "0")}
@@ -112,18 +119,24 @@ export function ProjectCarousel() {
 
       {/* Section counter */}
       <div className="absolute top-6 right-6 hidden md:flex items-center gap-2 z-10">
-        <span className="text-[9px] font-mono text-gray-300 tracking-widest select-none">[ 03 / 04 ]</span>
+        <span className="text-[9px] font-mono text-gray-300 tracking-widest select-none">
+          [ 03 / 04 ]
+        </span>
       </div>
 
-      {/* ── Header ── */}
+      {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="relative z-10 text-center mb-8 md:mb-10 w-full max-w-2xl"
       >
-        <p className="text-gray-500 text-sm font-medium tracking-widest uppercase mb-3">what i built</p>
-        <h1 className="font-black text-4xl md:text-5xl text-gray-900">Projects</h1>
+        <p className="text-gray-500 text-sm font-medium tracking-widest uppercase mb-3">
+          what i built
+        </p>
+        <h1 className="font-black text-4xl md:text-5xl text-gray-900">
+          Projects
+        </h1>
 
         {/* Segmented progress bar */}
         <div className="flex gap-1.5 justify-center mt-5 max-w-[12rem] mx-auto">
@@ -149,15 +162,15 @@ export function ProjectCarousel() {
         </div>
 
         <p className="text-gray-400 text-xs font-mono mt-2 tracking-widest">
-          {String(pos + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
+          {String(pos + 1).padStart(2, "0")} /{" "}
+          {String(projects.length).padStart(2, "0")}
         </p>
       </motion.div>
 
-      {/* ── Main content ── */}
+      {/* Main content */}
       <div className="relative z-10 w-full max-w-5xl">
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-10 items-center">
-
-          {/* ── Image (top on mobile, right on desktop) ── */}
+          {/* Image (top on mobile, right on desktop) ── */}
           <div
             className="relative w-full rounded-2xl shadow-2xl overflow-hidden cursor-grab active:cursor-grabbing lg:order-2 select-none"
             style={{ touchAction: "pan-y" }}
@@ -198,14 +211,18 @@ export function ProjectCarousel() {
 
                   {/* Project title inside image (visible on mobile) */}
                   <div className="absolute bottom-4 left-4 right-4 lg:hidden">
-                    <p className="text-white/60 text-[10px] font-mono tracking-widest uppercase mb-0.5">project</p>
-                    <h3 className="text-white font-black text-xl capitalize">{project.name}</h3>
+                    <p className="text-white/60 text-[10px] font-mono tracking-widest uppercase mb-0.5">
+                      project
+                    </p>
+                    <h3 className="text-white font-black text-xl capitalize">
+                      {project.name}
+                    </h3>
                   </div>
                 </motion.div>
               </AnimatePresence>
             </div>
 
-            {/* Swipe hint — visible on touch devices */}
+            {/* Swipe hint visible on touch devices */}
             <div className="absolute inset-0 flex items-center justify-between px-3 pointer-events-none opacity-0 group-hover:opacity-100">
               <div className="w-8 h-8 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center">
                 <ChevronLeft size={16} className="text-white" />
@@ -216,7 +233,7 @@ export function ProjectCarousel() {
             </div>
           </div>
 
-          {/* ── Info panel (bottom on mobile, left on desktop) ── */}
+          {/* Info panel (bottom on mobile, left on desktop) */}
           <div className="lg:order-1 w-full">
             <AnimatePresence custom={dir} mode="wait" initial={false}>
               <motion.div
@@ -247,7 +264,7 @@ export function ProjectCarousel() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gray-900 text-white font-semibold text-sm hover:bg-violet-700 hover:shadow-[0_0_20px_#7c3aed66] transition-all w-fit mt-1"
                 >
-                  Live Demo <ArrowUpRight size={15} />
+                  Demo <ArrowUpRight size={15} />
                 </a>
 
                 {/* Nav controls */}
@@ -296,5 +313,5 @@ export function ProjectCarousel() {
         </div>
       </div>
     </section>
-  )
+  );
 }

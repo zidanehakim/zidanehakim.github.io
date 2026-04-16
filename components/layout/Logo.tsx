@@ -1,4 +1,4 @@
-import Image from "next/image"
+import Image from "next/image";
 
 export function Logo() {
   return (
@@ -10,5 +10,5 @@ export function Logo() {
       className="absolute left-1/2 -translate-x-1/2 top-6"
       priority
     />
-  )
+  );
 }

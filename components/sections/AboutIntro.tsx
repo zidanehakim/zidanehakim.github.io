@@ -1,21 +1,20 @@
-"use client"
-import { useRef } from "react"
-import Image from "next/image"
-import { motion, useInView } from "framer-motion"
+"use client";
+import { useRef } from "react";
+import Image from "next/image";
+import { motion, useInView } from "framer-motion";
+import { projects } from "@/lib/data";
 
-const photos = Array.from({ length: 11 }, (_, i) => `/images/${i + 1}.jpg`)
+const photos = Array.from({ length: 11 }, (_, i) => `/images/${i + 1}.jpg`);
 
-// Deterministic slight rotations — alternating for a natural scattered feel
-const rotations = [1.6, -2.2, 0.9, -1.4, 2.1, -0.7, 1.8, -2.5, 0.5, -1.3, 1.9]
+// Deterministic slight rotations alternating for a natural scattered feel
+const rotations = [1.6, -2.2, 0.9, -1.4, 2.1, -0.7, 1.8, -2.5, 0.5, -1.3, 1.9];
 
 export function AboutIntro() {
-  const contentRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(contentRef, { once: true, margin: "-10%" })
+  const contentRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(contentRef, { once: true, margin: "-10%" });
 
   return (
     <section className="dot-grid relative w-screen bg-white overflow-hidden px-6 md:px-16 pt-24 pb-20">
-
-      {/* Left sidebar — vertical label */}
       <div className="absolute left-4 top-1/2 -translate-y-1/2 hidden md:flex flex-col items-center gap-3 z-10">
         <div className="w-px h-12 bg-gray-200" />
         <p
@@ -29,7 +28,9 @@ export function AboutIntro() {
 
       {/* Section counter top-right */}
       <div className="absolute top-6 right-6 hidden md:flex items-center gap-2 z-10">
-        <span className="text-[9px] font-mono text-gray-300 tracking-widest select-none">[ 02 / 04 ]</span>
+        <span className="text-[9px] font-mono text-gray-300 tracking-widest select-none">
+          [ 02 / 04 ]
+        </span>
       </div>
 
       {/* Ghost background text — CSS animation, no JS thread */}
@@ -42,10 +43,11 @@ export function AboutIntro() {
       </span>
 
       <div className="relative z-10 w-full max-w-5xl mx-auto">
-
         {/* ── Top: intro ── */}
-        <div ref={contentRef} className="grid md:grid-cols-2 gap-12 items-center mb-16">
-
+        <div
+          ref={contentRef}
+          className="grid md:grid-cols-2 gap-12 items-center mb-16"
+        >
           {/* Text */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -53,46 +55,47 @@ export function AboutIntro() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="flex flex-col gap-5"
           >
-            <p className="text-gray-500 text-sm font-medium tracking-widest uppercase">who am i</p>
+            <p className="text-gray-500 text-sm font-medium tracking-widest uppercase">
+              who am i
+            </p>
 
             <h1 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight">
-              Yazidane<br />
+              Yazidane
+              <br />
               <span className="text-violet-600">Hakim</span>
             </h1>
 
             <p className="text-gray-500 font-semibold text-sm tracking-wide">
-              Civil Engineering · National Taiwan University
+              National Taiwan University
             </p>
 
             <p className="text-gray-600 leading-relaxed text-sm max-w-md">
-              A sophomore at NTU balancing civil engineering studies with a deep
-              passion for software. I&apos;ve been building for the web since high
-              school — and now I&apos;m taking that seriously. I love crafting
-              experiences that feel both precise and alive.
+              A senior student at NTU balancing civil engineering studies with a
+              deep passion for software. I've been interested in software
+              development since high school, and now I'm taking that
+              professionally. I'm always eager to learn new technologies and
+              apply them to real-world projects.
             </p>
 
             {/* Stats */}
             <div className="flex flex-wrap gap-4 mt-2 relative">
               {[
                 { value: "NTU", label: "Civil Eng" },
-                { value: "4+", label: "Years Coding" },
-                { value: "10+", label: "Projects" },
+                { value: "2", label: "Years Coding" },
+                { value: projects.length, label: "Projects" },
               ].map(({ value, label }) => (
                 <div
                   key={label}
                   className="flex flex-col items-center justify-center w-20 h-20 rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-[0_0_16px_#7c3aed33] hover:border-violet-200 transition-all"
                 >
-                  <span className="font-black text-xl text-gray-900">{value}</span>
-                  <span className="text-xs text-gray-500 font-medium mt-0.5">{label}</span>
+                  <span className="font-black text-xl text-gray-900">
+                    {value}
+                  </span>
+                  <span className="text-xs text-gray-500 font-medium mt-0.5">
+                    {label}
+                  </span>
                 </div>
               ))}
-              {/* Asymmetric annotation */}
-              <span
-                className="absolute -top-4 -right-2 text-[9px] font-mono text-gray-300 tracking-widest select-none pointer-events-none"
-                style={{ transform: "rotate(-6deg)" }}
-              >
-                // since 2020
-              </span>
             </div>
           </motion.div>
 
@@ -105,8 +108,8 @@ export function AboutIntro() {
           >
             <div className="absolute w-64 h-64 rounded-full bg-violet-100 blur-3xl opacity-60" />
             <Image
-              src="/images/coffee.png"
-              alt="coffee"
+              src="/images/peace.png"
+              alt="peace"
               width={300}
               height={380}
               className="relative drop-shadow-xl object-contain"
@@ -114,16 +117,20 @@ export function AboutIntro() {
           </motion.div>
         </div>
 
-        {/* ── Moments: polaroid wall ── */}
+        {/* Moments: polaroid wall*/}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <div className="flex items-center gap-3 mb-6">
-            <p className="text-xs text-gray-400 font-medium tracking-widest uppercase">moments</p>
+            <p className="text-xs text-gray-400 font-medium tracking-widest uppercase">
+              moments
+            </p>
             <div className="flex-1 h-px bg-gray-100" />
-            <span className="text-[10px] font-mono text-gray-300 tracking-wider whitespace-nowrap">11 captures</span>
+            <span className="text-[10px] font-mono text-gray-300 tracking-wider whitespace-nowrap">
+              {photos.length} captures
+            </span>
           </div>
 
           {/* Polaroid grid using CSS columns */}
@@ -157,5 +164,5 @@ export function AboutIntro() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
