@@ -4,12 +4,28 @@ export const displayTexts = ["Software Engineer", "College Student"];
 // Timeline entries
 export const timeline = [
   {
+    type: "Job",
+    time: "2024-Present",
+    title: "Software Engineer Internship",
+    sub: "IsCoolLab",
+    description:
+      "Automated testing pipelines with CI/CD, Playwright E2E, and pytest. Built Trackaholic (Next.js/Node.js) for license management. Integrated test observability with MinIO, InfluxDB, and Grafana. Automated daily HR reporting via Slack.",
+  },
+  {
+    type: "Job",
+    time: "2024",
+    title: "Software Engineer Internship",
+    sub: "Instill AI",
+    description:
+      "Integrated Vector Database nodes (Weaviate, Qdrant, Milvus, Pinecone, Zilliz) into low-code AI pipeline builder for semantic search capabilities.",
+  },
+  {
     type: "Education",
     time: "2022-Present",
-    title: "National Taiwan University, Civil Engineering Department",
-    sub: "2nd year",
+    title: "National Taiwan University",
+    sub: "Civil Engineering",
     description:
-      "As I'm into engineering and would like to try something new, Civil Engineering does attract my interest a lot. Being able to analyze structures and make durable buildings, combined with mechanical theory and all of its complexity, makes the learning process more fun.",
+      "Studying civil engineering and structural analysis with focus on building durability and mechanical theory. Also self-studying software engineering and computer science topics while also taking some CS courses in university.",
   },
   {
     type: "Award",
@@ -17,39 +33,22 @@ export const timeline = [
     title: "Beasiswa Indonesia Maju (BIM) Awardee",
     sub: "Ministry of Education, Culture, Research, and Technology",
     description:
-      "Participating in the National Indonesian Informatics Olympiad 2021 brought me the opportunity to become an awardee of the Maju Scholarship and to choose National Taiwan University for my further studies.",
-  },
-  {
-    type: "Award",
-    time: "2023",
-    title: "Best Automation Award, Best Automation Group",
-    sub: "Physical Model Design Laboratory, NTU Civil Engineering Course",
-    description:
-      "Rail track projects, I've always strived to create the best and most creative projects combines with programming. In this case, the Raspberry Pi sends an HTML file to localhost:5000 when certain conditions of the rail are met.",
+      "Awarded scholarship after placing as finalist in National Indonesian Informatics Olympiad 2021.",
   },
   {
     type: "Award",
     time: "2021",
-    title: "National Informatics Olympiad",
-    sub: "Finalist",
+    title: "National Informatics Olympiad Finalist",
+    sub: "Gold Medal in Provincial Round",
     description:
-      "Having obtained a gold medal in the Bengkulu Informatics Olympiad 2021, I was chosen to represent the Bengkulu province in the National Informatics field. Consequently, I had the opportunity to participate as a finalist in the competition",
-  },
-  {
-    type: "Award",
-    time: "2021",
-    title: "Bengkulu Informatics Olympiad",
-    sub: "Gold Medal",
-    description:
-      "I've always been passionate about programming, starting from school-level qualifications, advancing to district competitions, and eventually participating at the provincial level. Hard work paid off when I was awarded a Gold Medal in the competition.",
+      "Represented Bengkulu province after winning gold at provincial level.",
   },
   {
     type: "Education",
     time: "2019-2022",
     title: "SMA Negeri 4 Rejang Lebong",
     sub: "Senior High School",
-    description:
-      "Three years of senior high school, I was just a normal student, self-studying programming on my own.",
+    description: "Self-taught programming during high school.",
   },
 ];
 

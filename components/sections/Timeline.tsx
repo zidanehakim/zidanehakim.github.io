@@ -21,7 +21,9 @@ function TimelineEntry({
   const badgeClass =
     obj.type === "Education"
       ? "bg-violet-900/60 text-violet-300 border border-violet-700/40"
-      : "bg-amber-900/50 text-amber-300 border border-amber-700/40";
+      : obj.type === "Award"
+        ? "bg-amber-900/50 text-amber-300 border border-amber-700/40"
+        : "bg-lime-900/50 text-lime-300 border border-lime-700/40";
 
   return (
     <div
